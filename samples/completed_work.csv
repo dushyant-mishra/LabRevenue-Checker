@@ -1,0 +1,16 @@
+work_id,job_id,customer_id,service_code,quantity,completed_date,billable,notes
+W001,LAB-1001,C100,ELISA,40,2026-10-07,yes,Standard batch
+W002,LAB-1002,C100,QPCR,12,2026-10-08,yes,Confirmed run
+W003,LAB-1003,C200,ELISA,20,2026-10-09,yes,Contract rate applies
+W004,LAB-1004,C200,PREP,10,2026-10-10,yes,Approved sample preparation
+W005,LAB-1005,C300,ICPMS,5,2026-10-11,yes,Five completed tests
+W006,LAB-1006,C300,RUSH,3,2026-10-11,yes,Rush fees preapproved
+W007,LAB-1007,C400,HPLC,7,2026-10-12,yes,Completed delivery
+W008,LAB-1008,C500,SEQ,4,2026-10-12,yes,Rate schedule not supplied
+W009,LAB-1009,C600,ELISA,10,2026-10-15,yes,Fully reconciled
+W010,LAB-1010,C300,ICPMS,2,2026-11-05,yes,Not yet due
+W011,LAB-1011,C100,ELISA,2,2026-10-20,no,QC repeats excluded
+W014,LAB-1014,C400,HPLC,2,2026-10-21,yes,Completed service invoice voided
+W015,LAB-1015,C100,ELISA,2,2026-10-22,yes,Approved credit applies
+W016,LAB-1016,C300,ICPMS,1,2026-10-24,yes,Approved write-off applies
+W017,LAB-1017,C700,SPEC,3,2026-10-25,yes,Rate agreement incomplete
