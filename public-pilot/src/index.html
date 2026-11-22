@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light">
+<title>LabRevenue · Public invoice pilot</title>
+<link rel="stylesheet" href="styles.css">
+<script defer src="pilot-data.js"></script><script defer src="engine.js"></script><script defer src="sandbox-data.js"></script><script defer src="app.js"></script>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <div class="brand"><span class="logo"><svg width="25" height="25" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V9h4v10M10 19V5h4v14M16 19v-7h4v7" stroke="currentColor" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="brand-word">lab<span>revenue</span><small>Revenue assurance</small></span></div>
+    <div class="org"><span class="org-symbol">P</span><span class="org-text"><b>Public records pilot</b><small>7 historical invoices</small></span><span class="org-ellipsis">•••</span></div>
+    <div class="nav-label">WORKSPACE</div>
+    <nav aria-label="Primary">
+      <button class="nav active" data-tab="overview"><span class="nav-ico">◫</span> Overview</button>
+      <button class="nav" data-tab="ledger"><span class="nav-ico">▤</span> Invoice ledger <em id="nav-invoices">7</em></button>
+      <button class="nav" data-tab="review"><span class="nav-ico">◉</span> Review desk <em id="nav-reviews">4</em></button>
+      <button class="nav" data-tab="evidence"><span class="nav-ico">▧</span> Evidence & methods</button>
+      <button class="nav" data-tab="sandbox"><span class="nav-ico">◈</span> Detection sandbox <em>DEMO</em></button>
+    </nav>
+    <div class="nav-label nav-lower">DATASET</div>
+    <div class="side-note"><span class="side-led"></span><span><b>Historical records</b><small>2022–2025 · Public filings</small></span></div>
+    <div class="side-push"></div>
+    <div class="side-foot"><span class="foot-circle"></span> Local, read-only analysis <small>No uploads to a server</small></div>
+  </aside>
+  <div class="right">
+    <header class="topbar"><div class="crumb"><span>Workspace</span><span class="slash">/</span><b id="crumb-title">Overview</b></div><div class="right-top"><span class="source-badge"><span></span> REAL PUBLIC RECORDS</span><div class="avatar" title="Read-only evaluation">LR</div></div></header>
+    <main id="main" tabindex="-1"></main>
+    <footer class="footer">LabRevenue • Public pilot uses authentic invoices • Detection sandbox uses entirely fictional work records • No recovery is claimed.</footer>
+  </div>
+</div>
+<div class="overlay" id="overlay" hidden></div>
+<aside id="detail" class="drawer" role="dialog" aria-modal="true" aria-label="Invoice details" hidden></aside>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<noscript>This local demo needs JavaScript enabled.</noscript>
+</body>
+</html>

@@ -1,0 +1,16 @@
+name: Public invoice pilot validation
+on:
+  push:
+  pull_request:
+jobs:
+  audit-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Historical public invoice checks
+        run: python public-pilot/tests/test_pilot_engine.py
+      - name: Synthetic engine regression tests
+        run: node public-pilot/tests/engine.test.js
