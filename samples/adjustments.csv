@@ -1,0 +1,3 @@
+adjustment_id,invoice_id,adjustment_type,amount,adjustment_date,reason
+A001,INV-1015,credit,30.00,2026-11-16,Approved courtesy credit
+A002,INV-1016,writeoff,40.00,2026-11-17,Manager-approved write-off
