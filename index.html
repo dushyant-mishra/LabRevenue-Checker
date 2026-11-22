@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light" />
+  <title>LabRevenue — Revenue assurance workspace</title>
+  <style>
+:root {--navy:#111f31;--navy-light:#1c3045;--ink:#162436;--mute:#708090;--mutedark:#556779;--line:#e6ebef;--line-2:#dbe4e8;--bg:#f7f9fa;--white:#fff;--teal:#087e77;--teal-dark:#05635e;--teal-pale:#e9f7f4;--amber:#ab6d13;--amber-pale:#fff6e9;--rose:#b55258;--rose-pale:#fff1f0;--blue:#4175a5;--blue-pale:#eef5fc;--shadow:0 8px 32px rgba(20,38,54,.045);font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-synthesis:none;color:var(--ink);background:var(--bg)}
+*{box-sizing:border-box}html,body{min-height:100%;margin:0}body{font-size:14px;line-height:1.5}button,input,select,textarea{font:inherit}button{cursor:pointer}button:disabled{opacity:.5;cursor:not-allowed}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,[tabindex]:focus-visible{outline:3px solid #8bcac4;outline-offset:2px}a{color:inherit}p,h1,h2,h3{margin:0}h1{font-size:32px;line-height:1.14;letter-spacing:-1.25px;font-weight:730}h2{font-size:18px;line-height:1.28;letter-spacing:-.42px;font-weight:690}h3{font-size:15px;font-weight:670;letter-spacing:-.2px}small{font-size:12px}.app-shell{display:flex;min-height:100vh}.sidebar{width:248px;flex:none;background:var(--navy);color:#ecf4f5;display:flex;flex-direction:column;padding:27px 15px 18px;position:sticky;top:0;height:100vh;z-index:5}.brand{display:flex;align-items:center;gap:11px;padding:0 10px;font-size:20px;letter-spacing:-1px;font-weight:450;line-height:1.1}.brand-bold{font-weight:770}.brand small{display:block;color:#a0b4bf;letter-spacing:.35px;font-size:10px;font-weight:520;margin-top:5px}.brand-mark{display:grid;place-items:center;height:37px;width:37px;background:#15ada1;border-radius:10px;color:#fff;box-shadow:0 3px 14px #14ada147}.workspace-chip{margin:33px 0 30px;display:flex;align-items:center;gap:10px;background:var(--navy-light);border:1px solid #354659;border-radius:11px;padding:10px 9px}.workspace-avatar{height:32px;width:32px;border-radius:8px;background:#d6ebe8;color:#0a756d;display:grid;place-items:center;font-weight:750;font-size:15px}.workspace-copy{flex:1;min-width:0}.workspace-copy b,.workspace-copy small{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.workspace-copy b{font-size:12px;font-weight:640}.workspace-copy small{font-size:10px;color:#afc0cb;margin-top:2px}.workspace-dots{font-size:16px;color:#a0adb8}.side-label{color:#7e92a2;letter-spacing:1.4px;font-size:10px;font-weight:780;padding:0 13px;margin-bottom:11px}.nav-list{display:grid;gap:4px}.nav-link{border:0;background:transparent;color:#a6b6c2;font-size:13px;border-radius:8px;display:flex;align-items:center;gap:13px;width:100%;text-align:left;padding:11px 11px;font-weight:560;min-height:43px;transition:background .15s,color .15s}.nav-link:hover{background:#27394b;color:#fff}.nav-link.active{background:#264a4f;color:#e8fffc}.nav-icon{width:23px;height:23px;display:grid;place-items:center;color:#a1bdc3;font-size:19px;font-weight:350}.nav-link.active .nav-icon{color:#70e0d4}.nav-count,.nav-short{margin-left:auto;font-size:11px;color:#91a5b2}.nav-count{background:#32485a;min-width:22px;text-align:center;padding:2px 5px;border-radius:5px}.side-label-bottom{margin-top:38px}.side-audit{display:flex;gap:10px;align-items:flex-start;margin:2px 12px}.status-dot,.offline-dot,.mode-pulse{width:7px;height:7px;border-radius:50%;background:#3ed0b7;flex:none}.status-dot{margin-top:8px}.side-audit b{display:block;font-size:11px;font-weight:620}.side-audit small{display:block;color:#90a4b5;margin-top:3px}.sidebar-spacer{flex:1}.sidebar-foot{padding:15px 10px 0;border-top:1px solid #2d4051;font-size:11px;color:#c0d7db}.sidebar-foot .offline-dot{display:inline-block;margin-right:5px}.sidebar-foot-muted{color:#8299aa;margin-top:4px;padding-left:14px}.workspace{flex:1;min-width:0}.topbar{height:74px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 40px}.breadcrumb{display:flex;align-items:center;gap:12px;font-size:12px;color:#9caab6}.breadcrumb strong{font-weight:660;color:#314355}.breadcrumb-sep{color:#c8d1d9}.topbar-actions{display:flex;align-items:center;gap:14px}.mode-tag{display:flex;align-items:center;gap:8px;padding:7px 12px;background:#f0faf7;color:#24786d;border:1px solid #d4ebe5;font-size:11px;font-weight:620;border-radius:30px}.mode-pulse{width:6px;height:6px}.icon-button{height:30px;width:30px;display:grid;place-items:center;background:#fff;border:1px solid #dce5e9;border-radius:50%;font-weight:720;color:#738393}.user-avatar{height:31px;width:31px;display:grid;place-items:center;background:#e7eeeb;color:#45766e;font-size:10px;font-weight:730;border-radius:50%;border:1px solid #d5e5df}.page-body{max-width:1530px;margin:0 auto;padding:41px 40px 90px}.view{display:none}.view.active{display:block}.heading-row{display:flex;justify-content:space-between;align-items:flex-end;gap:28px;margin-bottom:26px}.eyebrow{font-size:10px;letter-spacing:1.75px;font-weight:810;color:#0c8981;margin-bottom:12px}.eyebrow-icon{font-size:8px}.page-subtitle{margin-top:9px;color:#758596;font-size:13px;max-width:690px}.heading-actions{display:flex;align-items:end;gap:10px;padding-bottom:2px}.date-control{display:flex;flex-direction:column;gap:5px;font-size:10px;color:#7a8998;font-weight:690;white-space:nowrap}.date-control input{background:#fff;border:1px solid #dee7eb;border-radius:8px;color:#2d3b4a;font-size:12px;height:38px;padding:0 11px;min-width:148px}.btn{border-radius:8px;min-height:39px;border:1px solid transparent;padding:9px 15px;display:inline-flex;gap:8px;align-items:center;justify-content:center;white-space:nowrap;font-size:12px;font-weight:690;transition:transform .1s,background .15s,border .15s}.btn:hover:not(:disabled){transform:translateY(-1px)}.btn-primary{background:var(--teal);border-color:var(--teal);color:white;box-shadow:0 4px 10px #087e7718}.btn-primary:hover{background:var(--teal-dark)}.btn-outline{background:#fff;color:#314858;border-color:#dce5ea}.btn-outline:hover{background:#f6fbfb}.btn-quiet{background:#f3f7f8;color:#455866;border-color:#e0e8ec}.btn-red{background:#fff5f5;color:#a6474d;border-color:#f4dddd}.btn-sm{min-height:32px;padding:7px 11px;font-size:11px}.notice{display:flex;align-items:flex-start;gap:12px;padding:13px 15px;background:#eff7fc;border:1px solid #dceaf4;border-radius:10px;margin-bottom:24px;color:#405b72}.notice-icon{display:grid;place-items:center;flex:none;width:19px;height:19px;border:1px solid #a4c5df;border-radius:50%;font-weight:780;color:#548db6;font-size:12px}.notice div{display:flex;flex-direction:column;gap:2px;flex:1}.notice b{font-size:12px;font-weight:720}.notice span:not(.notice-icon){font-size:11px;color:#6c8497}.notice-close{border:0;background:none;font-size:21px;line-height:18px;color:#98adbc}.kpi-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px;margin-bottom:23px}.kpi-card{position:relative;background:#fff;border:1px solid #e5ecf0;border-radius:13px;min-height:159px;box-shadow:var(--shadow);padding:20px 21px;overflow:hidden}.kpi-top{display:flex;justify-content:space-between;align-items:center;gap:8px;color:#687a8a;font-size:12px;font-weight:570}.kpi-icon{height:30px;width:30px;border-radius:8px;background:#eef8f6;color:#159287;display:grid;place-items:center;font-size:17px}.kpi-icon.orange{background:#fff5e8;color:#bf8438}.kpi-icon.rose{background:#fff0ef;color:#cc777a}.kpi-icon.blue{background:#ecf3fb;color:#5c8bc0}.kpi-value{font-size:31px;font-weight:770;letter-spacing:-1.2px;line-height:1.15;margin-top:18px;font-variant-numeric:tabular-nums}.kpi-caption{font-size:11px;color:#92a0ad;margin-top:8px}.kpi-rule{position:absolute;bottom:0;left:20px;right:20px;height:3px;border-radius:3px;background:#bbddd8}.kpi-rule.orange{background:#edd9b8}.kpi-rule.rose{background:#efc7c8}.kpi-rule.blue{background:#ccdef0}.insight-layout{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(285px,1fr);gap:18px;margin-bottom:22px}.panel{background:#fff;border:1px solid #e5ecf0;border-radius:13px;box-shadow:var(--shadow);overflow:hidden}.panel-head{padding:22px 23px 0;display:flex;justify-content:space-between;align-items:flex-start;gap:20px}.panel-head p{font-size:11px;color:#8c9aa8;margin-top:5px}.panel-content{padding:21px 23px}.text-link{border:0;background:none;color:#16847d;font-size:11px;font-weight:760;padding:3px 0}.text-link:hover{text-decoration:underline}.exposure-bar{height:15px;display:flex;overflow:hidden;background:#edf1f3;border-radius:5px;margin:10px 0 20px}.exposure-bar>span{transition:width .2s}.exp-key{display:grid;gap:15px}.exp-line{display:flex;gap:10px;align-items:center;color:#657585;font-size:12px}.exp-dot{height:9px;width:9px;border-radius:3px;flex:none}.exp-line strong{margin-left:auto;font-weight:710;color:#2a3a47;font-size:12px;font-variant-numeric:tabular-nums}.exp-line .exp-name{flex:1}.detail-muted{color:#95a4af;font-size:11px}.mini-progress{height:8px;background:#eef2f4;border-radius:10px;overflow:hidden;margin-top:13px}.mini-progress div{height:100%;background:#1a948a;border-radius:10px}.review-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}.review-header b{font-size:24px;letter-spacing:-.7px}.review-stats{display:flex;justify-content:space-between;font-size:11px;color:#8192a2;margin:13px 0 4px}.action-list{margin-top:21px;display:grid;gap:12px}.action-item{display:flex;align-items:flex-start;gap:10px}.action-bullet{margin-top:4px;width:6px;height:6px;border-radius:50%;background:#d5e4e4;flex:none}.action-item b{font-size:11px;display:block;color:#3b4c59}.action-item span{display:block;color:#8a9aa6;font-size:10px;margin-top:2px}.section-head{display:flex;justify-content:space-between;align-items:end;margin:26px 0 15px;gap:10px}.section-head p{color:#8a9bab;font-size:11px;margin-top:4px}.table-frame{overflow-x:auto}.data-table{width:100%;border-collapse:collapse;text-align:left;white-space:nowrap;font-size:12px}.data-table th{font-size:10px;text-transform:uppercase;letter-spacing:.85px;color:#94a2ae;font-weight:760;padding:14px 18px;border-bottom:1px solid var(--line);background:#fcfdfd}.data-table td{padding:16px 18px;border-bottom:1px solid #edf0f2;vertical-align:middle;color:#647687}.data-table tbody tr:last-child td{border-bottom:0}.data-table tbody tr:hover{background:#f8fbfc}.data-table .primary-cell{color:#24384a;font-weight:690}.data-table .money-cell{color:#263948;font-weight:750;font-variant-numeric:tabular-nums;text-align:right}.data-table th:last-child{text-align:right}.data-table .action-cell{text-align:right}.case-open{font-weight:700;border:0;background:#f1f7f7;padding:6px 10px;border-radius:6px;color:#27837a}.case-open:hover{background:#e4f1f0}.case-link{background:none;border:0;color:#203748;font-weight:720;text-align:left;padding:0;font-size:12px;display:block}.case-link:hover{color:var(--teal);text-decoration:underline}.case-sub{font-size:10px;color:#8ea0ac;margin-top:4px}.badge{display:inline-flex;gap:6px;align-items:center;padding:4px 8px;font-size:10px;font-weight:730;border-radius:5px;border:1px solid transparent}.badge-teal{background:#e9f7f4;color:#087c6f;border-color:#d5eae4}.badge-amber{background:#fff6e9;color:#ae761f;border-color:#f7e8ca}.badge-rose{background:#fff0f0;color:#b35458;border-color:#f6dede}.badge-blue{background:#edf4fc;color:#5b84aa;border-color:#dae8f6}.badge-gray{background:#f1f4f6;color:#697986;border-color:#e6edf1}.badge-dot{width:6px;height:6px;border-radius:50%;background:currentColor}.filterbar{display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap;padding:17px 19px;border-bottom:1px solid var(--line)}.search-field{position:relative;min-width:240px;flex:1;max-width:440px}.search-field span{position:absolute;left:13px;top:8px;color:#95a4ae;font-size:17px}.search-field input{width:100%;border:1px solid #dce5e9;border-radius:8px;background:#fff;height:37px;padding:0 12px 0 37px;outline-color:#78c2b6;font-size:12px}.select-field{min-width:150px;height:37px;border:1px solid #dce5e9;background:#fff;color:#465967;border-radius:8px;padding:0 10px;font-size:11px}.filtergroup{display:flex;gap:9px;flex-wrap:wrap}.result-line{padding:10px 19px;border-top:1px solid #edf2f3;color:#8a9ba8;font-size:11px}.empty-state{padding:55px 20px;text-align:center;color:#82929d}.empty-state .empty-mark{height:50px;width:50px;margin:0 auto 14px;display:grid;place-items:center;border-radius:14px;background:#eff7f6;font-size:26px;color:#1e948a}.empty-state h3{color:#31485a;margin-bottom:5px}.pills{display:flex;gap:7px;flex-wrap:wrap}.quality-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:20px}.quality-item{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:11px;padding:15px 16px}.quality-circle{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#e9f6f1;color:#188575;font-weight:750}.quality-item b{display:block;font-size:12px}.quality-item small{display:block;color:#8b9ba8;margin-top:2px}.file-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.file-card{display:flex;flex-direction:column;gap:11px;padding:21px;border:1px solid #e2e9eb;background:#fff;border-radius:12px;transition:border .16s,box-shadow .16s}.file-card:hover,.file-card.drag-over{border-color:#79b8ae;box-shadow:0 0 0 3px #e7f5f2}.file-card .file-head{display:flex;align-items:flex-start;gap:12px}.file-icon{height:37px;width:37px;border-radius:9px;display:grid;place-items:center;background:#eaf6f3;color:#178a82;font-size:20px;flex:none}.file-copy{flex:1;min-width:0}.file-copy b{font-size:13px}.file-copy p{font-size:11px;color:#8b99a5;margin-top:3px}.file-card .file-foot{display:flex;justify-content:space-between;align-items:center;gap:8px}.file-card input[type=file]{display:none}.file-stat{font-size:11px;color:#7b8c98}.file-stat b{color:#1c8b7d}.file-actions{display:flex;gap:6px;align-items:center}.file-card .file-columns{font-size:10px;color:#8294a0;border-top:1px solid #eef2f4;padding-top:11px;line-height:1.6;word-break:break-word}.file-card .file-columns code{color:#537b7b}.source-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:17px}.hint-box{background:#f1f7f8;border:1px solid #dae8e9;border-radius:10px;padding:16px;color:#4e6772;font-size:12px;line-height:1.7}.hint-box strong{color:#274951}.error-panel{background:#fff7f4;border:1px solid #f1d2c8;padding:15px 18px;border-radius:10px;color:#8e4333;font-size:12px;margin-bottom:18px}.error-panel ul{margin:8px 0 0;padding-left:20px}.warning-panel{background:#fff9ed;border:1px solid #f2e1b9;padding:14px 17px;border-radius:10px;color:#80612a;font-size:11px;margin-bottom:18px}.warning-panel ul{margin:7px 0 0;padding-left:20px}.method-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px;margin-bottom:20px}.method-card{border:1px solid var(--line);background:#fff;border-radius:12px;padding:24px}.step-index{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;background:#eaf7f3;color:#1d8b7d;font-weight:800;font-size:11px;margin-bottom:13px}.method-card h3{font-size:14px}.method-card p{font-size:12px;color:#788995;line-height:1.7;margin-top:8px}.scope-list{padding:21px 23px;display:grid;gap:12px}.scope-list>div{display:flex;align-items:start;gap:10px;font-size:12px;color:#5b7180}.scope-list .good{color:#119183;font-weight:800}.scope-list .bad{color:#d07e6d;font-weight:800}.overlay{position:fixed;inset:0;background:rgba(12,28,44,.42);z-index:15;backdrop-filter:blur(1.5px)}.case-drawer{position:fixed;right:0;top:0;bottom:0;width:min(570px,100vw);background:#fff;z-index:20;overflow-y:auto;box-shadow:-20px 0 60px #0e27382a;animation:slideIn .19s ease-out}.drawer-header{padding:25px 29px 22px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:18px}.drawer-kicker{font-size:10px;font-weight:760;letter-spacing:1.3px;color:#12887f}.drawer-header h2{font-size:22px;margin-top:7px;letter-spacing:-.65px}.drawer-header p{font-size:11px;color:#8c9ca8;margin-top:7px}.drawer-close{border:1px solid #e3e9ee;background:#f8fafb;border-radius:7px;height:32px;width:32px;color:#697d8a;font-size:19px;flex:none}.drawer-body{padding:23px 29px 45px}.drawer-amount{background:#f2f8f7;border:1px solid #dfeee9;border-radius:10px;padding:19px 20px;margin-bottom:21px}.drawer-amount small{color:#6e8d89;font-size:11px}.drawer-amount strong{display:block;font-size:30px;letter-spacing:-.9px;margin:4px 0;color:#204b46}.drawer-amount p{color:#718b88;font-size:11px}.drawer-section{margin-top:23px;border-top:1px solid #edf0f3;padding-top:20px}.drawer-section:first-child{margin-top:0;border:0;padding:0}.drawer-section h3{margin-bottom:12px;font-size:13px}.drawer-section p{color:#6e8291;font-size:12px;line-height:1.75}.evidence-box{border:1px solid #e5edf0;border-radius:9px;overflow:hidden}.evidence-row{display:flex;align-items:center;gap:10px;padding:11px 12px;border-bottom:1px solid #edf1f3;font-size:11px}.evidence-row:last-child{border:0}.evidence-row strong{flex:1;color:#49606e;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.evidence-row span{color:#8c9da9}.evidence-row code{color:#127e72;background:#ebf6f3;padding:3px 6px;border-radius:5px}.formula{background:#f6f9fa;border:1px dashed #dce6e9;border-radius:9px;padding:15px;color:#3d5862;font-family:ui-monospace,Consolas,monospace;font-size:11px;overflow-x:auto;white-space:normal;line-height:1.8}.drawer-form{display:grid;gap:12px}.form-label{font-size:11px;color:#5a6f7d;font-weight:700;display:grid;gap:6px}.form-label select,.form-label input,.form-label textarea{width:100%;border:1px solid #dce5e9;border-radius:8px;background:#fff;min-height:38px;padding:9px 11px;color:#344957;font-size:12px}.form-label textarea{resize:vertical;min-height:78px}.drawer-buttons{display:flex;gap:9px;flex-wrap:wrap;margin-top:16px}.toast{position:fixed;right:23px;bottom:23px;max-width:360px;background:#172f38;color:#f2fbf9;box-shadow:0 10px 35px #0b25263d;border-radius:10px;padding:13px 16px;z-index:50;font-size:12px;line-height:1.5;transform:translateY(100px);opacity:0;pointer-events:none;transition:.2s}.toast.show{opacity:1;transform:translateY(0)}.footer-note{padding:17px 0 0;color:#9aabb5;font-size:10px;line-height:1.7}.overview-bottom{padding-bottom:10px}@keyframes slideIn{from{transform:translateX(35px);opacity:.6}to{transform:translateX(0);opacity:1}}
+@media(max-width:1200px){.kpi-grid{grid-template-columns:repeat(2,1fr)}.page-body{padding:34px 26px 75px}.topbar{padding:0 26px}.insight-layout{grid-template-columns:1fr}}
+@media(max-width:760px){.app-shell{display:block}.sidebar{position:relative;width:100%;height:auto;padding:16px;gap:12px}.brand{padding:0 5px}.workspace-chip,.side-label,.side-audit,.sidebar-foot{display:none}.nav-list{display:flex;overflow-x:auto;gap:6px}.nav-link{flex:none;width:auto;padding:8px 12px;min-height:37px}.nav-icon,.nav-short,.nav-count{display:none}.sidebar-spacer{display:none}.topbar{height:56px;padding:0 17px}.page-body{padding:29px 16px 64px}.heading-row{display:block}.heading-actions{margin-top:19px}.mode-tag{font-size:0;padding:7px}.mode-pulse{height:8px;width:8px}.kpi-grid{gap:9px}.kpi-card{min-height:140px;padding:15px}.kpi-value{font-size:25px}.kpi-top{font-size:10px}.kpi-icon{height:26px;width:26px}.file-grid,.quality-strip,.method-grid{grid-template-columns:1fr}.filterbar,.filtergroup{width:100%}.search-field{max-width:none}.select-field{flex:1}.panel-head{padding:18px 16px 0}.panel-content{padding:18px 16px}h1{font-size:29px}.drawer-header{padding:22px 20px}.drawer-body{padding:18px 20px 32px}}
+/* Accessible, expandable evidence rows */
+.evidence-details{border-bottom:1px solid #edf1f3}.evidence-details:last-child{border-bottom:0}.evidence-details summary{list-style:none;display:flex;align-items:center;gap:9px;padding:12px 13px;cursor:pointer;font-size:11px}.evidence-details summary::-webkit-details-marker{display:none}.evidence-details summary strong{flex:1;color:#48606c;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.evidence-details summary span{color:#8193a0;white-space:nowrap}.evidence-details summary .ev-icon{color:#168f82;font-size:17px}.evidence-details summary code{color:#168578;background:#e8f6f3;padding:3px 6px;border-radius:5px}.evidence-details[open]{background:#fbfdfd}.evidence-details-body{padding:5px 15px 16px 38px;display:grid;gap:7px}.ev-field{display:grid;grid-template-columns:minmax(125px,40%) minmax(0,1fr);gap:10px;font-size:11px;line-height:1.6}.ev-field span{color:#9aa8b2;overflow-wrap:anywhere}.ev-field b{font-weight:580;color:#3a5362;overflow-wrap:anywhere}
+@media(max-width:760px){.nav-link{font-size:11px;padding:8px 9px}.nav-list{gap:3px}.data-table,.data-table tbody{display:block;width:100%;white-space:normal}.data-table thead{display:none}.data-table tbody tr{display:grid;grid-template-columns:1fr auto;gap:9px;padding:15px 17px;border-bottom:1px solid #eaf0f1}.data-table tbody tr:last-child{border:0}.data-table tbody td{border:0;padding:0!important;min-width:0;font-size:11px}.data-table tbody td:first-child{grid-column:1/-1;margin-bottom:3px}.data-table tbody td:nth-child(2),.data-table tbody td:nth-child(3){display:flex;align-items:center}.data-table tbody td:nth-child(3):before{content:'Customer';color:#91a4b2;margin-right:7px;font-size:10px}.data-table tbody td:nth-child(4){text-align:left;align-self:center;font-size:15px}.data-table tbody td:nth-child(5){grid-column:1;grid-row:4}.data-table tbody td:last-child{grid-column:2;grid-row:4}.data-table .action-cell{text-align:right}.data-table td:nth-child(2){grid-column:1}.data-table td:nth-child(3){grid-column:2;justify-content:flex-end}.case-drawer{width:100%}.ev-field{grid-template-columns:minmax(110px,38%) minmax(0,1fr)}}
+.draft-preview{border:1px solid #d9eae5;border-radius:10px;background:#f7fcfa;padding:15px;margin-top:15px}.draft-preview textarea{background:#fff;resize:vertical;min-height:190px;line-height:1.6}
+
+/* Native hidden state must override display rules for notices, drawers and previews. */
+[hidden]{display:none!important}
+@media (max-width:760px){.heading-actions{flex-wrap:wrap;max-width:100%}.heading-actions .btn{max-width:100%}}
+
+</style>
+  <script>
+/* LabRevenue Check — audit engine v3. No network calls, no LLM decisions. */
+(function (root, make) { const api=make(); if(typeof module==='object' && module.exports)module.exports=api; if(root)root.LabAudit=api; })(typeof globalThis!=='undefined'?globalThis:this,function(){
+'use strict';
+const REQUIRED={
+  work:['work_id','job_id','customer_id','service_code','quantity','completed_date','billable'],
+  rates:['customer_id','service_code','unit_rate','effective_from','effective_to'],
+  invoices:['line_id','invoice_id','job_id','customer_id','service_code','quantity','unit_price','invoice_date','due_date','status'],
+  payments:['payment_id','invoice_id','paid_amount','payment_date'],
+  adjustments:['adjustment_id','invoice_id','adjustment_type','amount','adjustment_date','reason']
+};
+const FILES={work:'completed_work.csv',rates:'contract_rates.csv',invoices:'invoice_lines.csv',payments:'payments.csv',adjustments:'adjustments.csv'};
+const OPTIONAL=new Set(['payments','adjustments']);
+const ACTIVE=new Set(['issued','sent','paid','partial','partially_paid','overdue','open']);
+const INACTIVE=new Set(['draft','void','canceled','cancelled']);
+const TRUE=new Set(['yes','true','1','approved']);
+const FALSE=new Set(['no','false','0','nonbillable','not billable']);
+const dateOK=s=>{if(!/^\d{4}-\d{2}-\d{2}$/.test(String(s||'')))return false;let [y,m,d]=s.split('-').map(Number);const dt=new Date(Date.UTC(y,m-1,d));return dt.getUTCFullYear()===y&&dt.getUTCMonth()===m-1&&dt.getUTCDate()===d;};
+function cents(input){const s=String(input??'').trim();if(!/^\d+(?:\.\d{1,2})?$/.test(s))return null;let [a,b='']=s.split('.');const n=Number(a)*100+Number(b.padEnd(2,'0'));return Number.isSafeInteger(n)&&n>=0?n:null;}
+function qty(input){const s=String(input??'').trim();if(!/^\d+(?:\.\d{1,3})?$/.test(s))return null;let [a,b='']=s.split('.');const n=Number(a)*1000+Number(b.padEnd(3,'0'));return Number.isSafeInteger(n)&&n>0?n:null;}
+const amount=(milli,price)=>Math.round(milli*price/1000);
+const fmtMoney=c=>(c/100).toLocaleString('en-US',{style:'currency',currency:'USD'});
+const fmtQty=m=>String(Number((m/1000).toFixed(3)));
+const key=(...p)=>JSON.stringify(p);
+function hash(s){let h=2166136261;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619);}return (h>>>0).toString(36).toUpperCase().padStart(7,'0');}
+function parseCSV(input){
+ const text=String(input??'').replace(/^\uFEFF/,'');if(!text.trim())throw Error('CSV is empty; include a header row.');
+ let rows=[],row=[],field='',quoted=false,closed=false;
+ for(let i=0;i<text.length;i++){
+  const c=text[i];
+  if(quoted){if(c==='"'&&text[i+1]==='"'){field+='"';i++;}else if(c==='"'){quoted=false;closed=true;}else field+=c;}
+  else if(closed){if(c===','){row.push(field);field='';closed=false;}else if(c==='\n'||c==='\r'){row.push(field);if(row.some(x=>x.trim()))rows.push(row);row=[];field='';closed=false;if(c==='\r'&&text[i+1]==='\n')i++;}else if(c!==' '&&c!=='\t')throw Error('Unexpected characters after closing quote.');}
+  else if(c==='"'&&field===''){quoted=true;}
+  else if(c==='"'){throw Error('Invalid quote inside an unquoted field.');}
+  else if(c===','){row.push(field);field='';}
+  else if(c==='\n'||c==='\r'){row.push(field);if(row.some(x=>x.trim()))rows.push(row);row=[];field='';if(c==='\r'&&text[i+1]==='\n')i++;}
+  else field+=c;
+ }
+ if(quoted)throw Error('Unterminated quoted CSV field.');row.push(field);if(row.some(x=>x.trim()))rows.push(row);
+ if(!rows.length)throw Error('Header row is missing.');
+ const headers=rows.shift().map(h=>h.trim());if(headers.some(h=>!h)||new Set(headers).size!==headers.length)throw Error('Duplicate or empty column headers.');
+ const parsed=rows.map((values,i)=>{if(values.length!==headers.length)throw Error(`Row ${i+2} has ${values.length} fields; expected ${headers.length}.`);return {__row:i+2,...Object.fromEntries(headers.map((h,j)=>[h,values[j].trim()]))};});
+ return {headers,rows:parsed};
+}
+function table(rows,name){return {headers:[...REQUIRED[name]],rows:rows.map((r,i)=>({__row:r.__row||i+2,...r}))};}
+function audit(data,asOf='2026-11-22'){
+ if(!dateOK(asOf))throw Error('Invalid audit date. Use YYYY-MM-DD.');
+ const errors=[],warnings=[],input={},stats={};
+ const paymentCoverage=Boolean(data.payments), adjustmentCoverage=Boolean(data.adjustments);
+ const arCoverage=paymentCoverage&&adjustmentCoverage;
+ for(const [kind,cols] of Object.entries(REQUIRED)){
+  const t=data[kind];
+  if(!t){if(!OPTIONAL.has(kind))errors.push(`${FILES[kind]} has not been uploaded.`);input[kind]=[];stats[kind]=0;continue;}
+  if(!Array.isArray(t.headers)||!Array.isArray(t.rows)){errors.push(`${FILES[kind]} is not a parsed CSV file.`);continue;}
+  const missing=cols.filter(k=>!t.headers.includes(k));if(missing.length)errors.push(`${FILES[kind]} missing: ${missing.join(', ')}.`);
+  input[kind]=t.rows;stats[kind]=t.rows.length;
+ }
+ const reject=()=>({valid:false,errors,warnings,findings:[],summary:null,stats});
+ if(errors.length)return reject();
+ const work=[],rates=[],invoices=[],payments=[],adjustments=[];
+ const skipped={nonbillable:0,futureWork:0,futureInvoices:0,futurePayments:0,futureAdjustments:0,inactiveInvoices:0};
+ const seen={work:new Set(),invoices:new Set(),payments:new Set(),adjustments:new Set()};
+ const err=(kind,r,msg)=>errors.push(`${FILES[kind]} row ${r.__row||'?'}: ${msg}`);
+ for(const r of input.rates){
+  const from=r.effective_from,to=r.effective_to||'9999-12-31',p=cents(r.unit_rate);
+  if(!r.customer_id||!r.service_code||!dateOK(from)||!dateOK(to)||to<from||p===null)err('rates',r,'invalid customer, service, amount, or effective date range.');
+  else rates.push({...r,from,to,rate:p});
+ }
+ for(const r of input.work){
+  if(!r.work_id||seen.work.has(r.work_id)){err('work',r,'missing or duplicate work_id.');continue;}seen.work.add(r.work_id);
+  const q=qty(r.quantity),flag=String(r.billable).toLowerCase();
+  if(!r.job_id||!r.customer_id||!r.service_code||!dateOK(r.completed_date)||q===null||(!TRUE.has(flag)&&!FALSE.has(flag))){err('work',r,'invalid identity, quantity, date, or billable flag.');continue;}
+  if(FALSE.has(flag)){skipped.nonbillable++;continue;}
+  if(r.completed_date>asOf){skipped.futureWork++;continue;}
+  work.push({...r,q});
+ }
+ for(const r of input.invoices){
+  if(!r.line_id||seen.invoices.has(r.line_id)){err('invoices',r,'missing or duplicate line_id.');continue;}seen.invoices.add(r.line_id);
+  const q=qty(r.quantity),p=cents(r.unit_price),status=String(r.status).toLowerCase();
+  if(!r.invoice_id||!r.job_id||!r.customer_id||!r.service_code||q===null||p===null||!dateOK(r.invoice_date)||!dateOK(r.due_date)||r.due_date<r.invoice_date||(!ACTIVE.has(status)&&!INACTIVE.has(status))){err('invoices',r,'invalid invoice identity, quantity, price, date, or status.');continue;}
+  if(INACTIVE.has(status)){skipped.inactiveInvoices++;continue;}
+  if(r.invoice_date>asOf){skipped.futureInvoices++;continue;}
+  invoices.push({...r,q,p,status});
+ }
+ for(const r of input.payments){
+  if(!r.payment_id||seen.payments.has(r.payment_id)){err('payments',r,'missing or duplicate payment_id.');continue;}seen.payments.add(r.payment_id);
+  const paid=cents(r.paid_amount);if(!r.invoice_id||paid===null||!dateOK(r.payment_date)){err('payments',r,'invalid invoice reference, amount or payment date.');continue;}
+  if(r.payment_date>asOf){skipped.futurePayments++;continue;}payments.push({...r,paid});
+ }
+ for(const r of input.adjustments){
+  if(!r.adjustment_id||seen.adjustments.has(r.adjustment_id)){err('adjustments',r,'missing or duplicate adjustment_id.');continue;}seen.adjustments.add(r.adjustment_id);
+  const value=cents(r.amount),type=String(r.adjustment_type||'').toLowerCase();
+  if(!r.invoice_id||value===null||!['credit','writeoff'].includes(type)||!dateOK(r.adjustment_date)){err('adjustments',r,'invalid invoice, amount, credit/writeoff type or date.');continue;}
+  if(r.adjustment_date>asOf){skipped.futureAdjustments++;continue;}adjustments.push({...r,value,type});
+ }
+ if(!arCoverage)warnings.push('Past-due A/R assessment is disabled until both payments.csv and adjustments.csv are supplied, so credits or receipts are never silently assumed to be zero.');
+ const invoiceMap=new Map(),identity=new Map();
+ for(const inv of invoices){
+  const prev=identity.get(inv.invoice_id);
+  if(prev&&(prev.customer_id!==inv.customer_id||prev.invoice_date!==inv.invoice_date||prev.due_date!==inv.due_date||prev.status!==inv.status))errors.push(`Invoice ${inv.invoice_id} contains inconsistent customer, header dates or invoice status.`);
+  identity.set(inv.invoice_id,inv);
+  invoiceMap.set(inv.invoice_id,[...(invoiceMap.get(inv.invoice_id)||[]),inv]);
+ }
+ const orphanPayments=payments.filter(x=>!invoiceMap.has(x.invoice_id)),orphanAdjustments=adjustments.filter(x=>!invoiceMap.has(x.invoice_id));
+ if(orphanPayments.length)warnings.push(`${orphanPayments.length} payment(s) refer to an invoice outside this export or period; these cannot be reconciled.`);
+ if(orphanAdjustments.length)warnings.push(`${orphanAdjustments.length} credit/write-off record(s) refer to invoices outside this export or period.`);
+ for(const p of payments){const inv=identity.get(p.invoice_id);if(inv&&p.payment_date<inv.invoice_date)warnings.push(`Payment ${p.payment_id} precedes invoice ${p.invoice_id}; verify prepayment allocation.`);}
+ for(const adj of adjustments){const inv=identity.get(adj.invoice_id);if(inv&&adj.adjustment_date<inv.invoice_date)warnings.push(`Adjustment ${adj.adjustment_id} precedes invoice ${adj.invoice_id}.`);}
+ if(errors.length)return reject();
+ const workGroups=new Map(),invoiceGroups=new Map();
+ for(const w of work){let k=key(w.job_id,w.customer_id,w.service_code);workGroups.set(k,[...(workGroups.get(k)||[]),w]);}
+ for(const i of invoices){let k=key(i.job_id,i.customer_id,i.service_code);invoiceGroups.set(k,[...(invoiceGroups.get(k)||[]),i]);}
+ const paidBy=new Map(),adjBy=new Map();
+ for(const p of payments)paidBy.set(p.invoice_id,(paidBy.get(p.invoice_id)||0)+p.paid);
+ for(const a of adjustments)adjBy.set(a.invoice_id,[...(adjBy.get(a.invoice_id)||[]),a]);
+ let findings=[];
+ const evidence=(kind,rows)=>rows.map(r=>({source:FILES[kind],row:r.__row,reference:r.work_id||r.line_id||r.payment_id||r.adjustment_id||r.service_code||'—'}));
+ const add=(type,bucket,properties)=>{
+  const k=key(type,properties.job_id||'',properties.customer_id||'',properties.service_code||'',properties.invoice_id||'',properties.line_id||'');
+  findings.push({id:'LRC-'+hash(k),type,bucket,amountCents:null,formula:'',expectedCents:null,actualCents:null,workIds:[],evidence:[],...properties});
+ };
+ for(const [k,ws] of workGroups){
+  const [job,customer,service]=JSON.parse(k),inv=invoiceGroups.get(k)||[];
+  const wq=ws.reduce((s,r)=>s+r.q,0),iq=inv.reduce((s,r)=>s+r.q,0);
+  const matchRates=ws.map(w=>rates.filter(r=>r.customer_id===customer&&r.service_code===service&&r.from<=w.completed_date&&r.to>=w.completed_date));
+  const uniqueRates=new Set(matchRates.filter(m=>m.length===1).map(m=>m[0].rate));
+  const valid=matchRates.every(m=>m.length===1)&&uniqueRates.size===1;
+  const rate=valid?[...uniqueRates][0]:null;
+  const base={job_id:job,customer_id:customer,service_code:service,invoice_id:[...new Set(inv.map(i=>i.invoice_id))].join(', '),workIds:ws.map(w=>w.work_id),evidence:[...evidence('work',ws),...evidence('invoices',inv)]};
+  if(rate===null){
+   add('RATE_UNVERIFIED','needs_evidence',{...base,title:'Contract rate cannot be verified',summary:'Missing, overlapping or changing effective rates for the recorded work.',recommendation:'Confirm the applicable rate schedule and date-specific allocation before billing.',evidence:[...base.evidence,...evidence('rates',rates.filter(r=>r.customer_id===customer&&r.service_code===service))]});
+   continue;
+  }
+  if(wq>iq){const remaining=wq-iq;
+   add('UNBILLED','potential_revenue',{...base,title:inv.length?'Partially invoiced completed work':'Completed work without a matching invoice',amountCents:amount(remaining,rate),expectedCents:amount(wq,rate),actualCents:amount(iq,rate),formula:`(${fmtQty(wq)} completed − ${fmtQty(iq)} invoiced) × ${fmtMoney(rate)}`,evidence:[...base.evidence,...evidence('rates',matchRates.map(x=>x[0]))],summary:`${fmtQty(remaining)} units of approved work do not appear on an active invoice in this snapshot.`,recommendation:'Check for bundled, prepaid, free-of-charge, delayed or separately invoiced work before issuing a supplemental invoice.'});
+  }
+  if(iq>wq){const extra=iq-wq;
+   add('EXCESS_QUANTITY','customer_risk',{...base,title:'Invoice quantity exceeds completed work',amountCents:amount(extra,rate),expectedCents:amount(wq,rate),actualCents:amount(iq,rate),formula:`(${fmtQty(iq)} invoiced − ${fmtQty(wq)} completed) × ${fmtMoney(rate)}`,evidence:[...base.evidence,...evidence('rates',matchRates.map(x=>x[0]))],summary:`${fmtQty(extra)} invoiced units are not supported by the supplied approved-work records.`,recommendation:'Confirm whether other work records, approved repeats, or billing arrangements explain the difference.'});
+  }
+  for(const line of inv){if(line.p===rate)continue;const low=line.p<rate;
+   add(low?'RATE_UNDER':'RATE_OVER',low?'potential_revenue':'customer_risk',{...base,invoice_id:line.invoice_id,line_id:line.line_id,title:low?'Invoice price below reference rate':'Invoice price above reference rate',amountCents:amount(line.q,Math.abs(rate-line.p)),expectedCents:amount(line.q,rate),actualCents:amount(line.q,line.p),formula:`${fmtQty(line.q)} units × (${fmtMoney(Math.max(rate,line.p))} − ${fmtMoney(Math.min(rate,line.p))})`,summary:`Invoice ${line.invoice_id} uses ${fmtMoney(line.p)} per unit; dated contract reference is ${fmtMoney(rate)}.`,recommendation:'Confirm approved amendments, discounts, credits and commercial exceptions before proposing a correction.',evidence:[...evidence('invoices',[line]),...evidence('rates',rates.filter(r=>r.customer_id===customer&&r.service_code===service&&r.from<=ws[0].completed_date&&r.to>=ws[0].completed_date))]});
+  }
+ }
+ for(const [k,inv] of invoiceGroups){if(workGroups.has(k))continue;const [job,customer,service]=JSON.parse(k);
+  add('NO_WORK_MATCH','needs_evidence',{job_id:job,customer_id:customer,service_code:service,invoice_id:[...new Set(inv.map(i=>i.invoice_id))].join(', '),title:'Invoice lacks supporting work in this export',summary:'No completed approved-work record matches this job, customer and service as of the audit date.',recommendation:'Confirm the work export is complete; check deposits, prepayments and services completed outside the audit period.',evidence:evidence('invoices',inv)});
+ }
+ // Unmatched financial transactions are their own review cases, never assumed to be recoveries.
+ for(const p of orphanPayments){
+  add('UNMATCHED_PAYMENT','needs_evidence',{invoice_id:p.invoice_id,title:'Payment has no matching invoice in the export',summary:`Payment ${p.payment_id} references invoice ${p.invoice_id}, but that invoice is absent or outside the audit snapshot.`,recommendation:'Obtain the full invoice register or confirm the receipt allocation before interpreting this payment.',evidence:evidence('payments',[p])});
+ }
+ for(const a of orphanAdjustments){
+  add('UNMATCHED_ADJUSTMENT','needs_evidence',{invoice_id:a.invoice_id,title:'Credit or write-off has no matching invoice',summary:`Adjustment ${a.adjustment_id} references invoice ${a.invoice_id}, which cannot be matched in the provided invoice export.`,recommendation:'Verify the adjustment approval and obtain the related original invoice before reconciling balances.',evidence:evidence('adjustments',[a])});
+ }
+ for(const [id,lines] of invoiceMap){
+  const gross=lines.reduce((s,l)=>s+amount(l.q,l.p),0),paid=paidBy.get(id)||0,adjs=adjBy.get(id)||[],credit=adjs.reduce((s,a)=>s+a.value,0),net=gross-credit,balance=net-paid,due=lines[0].due_date;
+  if(credit>gross){add('CREDITS_EXCEED','needs_evidence',{invoice_id:id,customer_id:lines[0].customer_id,title:'Credits and write-offs exceed invoice total',summary:`${fmtMoney(credit)} of adjustments exceeds ${fmtMoney(gross)} of invoice charges.`,recommendation:'Verify credit memo posting and allocation before drawing a conclusion.',evidence:[...evidence('invoices',lines),...evidence('adjustments',adjs)]});continue;}
+  if(arCoverage&&lines[0].status==='paid'&&balance>0){
+   add('PAID_STATUS_MISMATCH','needs_evidence',{invoice_id:id,customer_id:lines[0].customer_id,title:'Invoice marked paid, but receipts do not reconcile',summary:`Invoice ${id} is marked paid while the provided payment allocations and adjustments leave ${fmtMoney(balance)} outstanding.`,recommendation:'Check missing allocations, unapplied receipts and status updates before pursuing collection.',evidence:[...evidence('invoices',lines),...evidence('payments',payments.filter(p=>p.invoice_id===id)),...evidence('adjustments',adjs)]});
+  }
+  if(arCoverage&&balance<0){add('OVERPAYMENT','needs_evidence',{invoice_id:id,customer_id:lines[0].customer_id,title:'Payments exceed adjusted invoice balance',amountCents:-balance,formula:`${fmtMoney(paid)} payments − (${fmtMoney(gross)} billed − ${fmtMoney(credit)} adjustments)`,summary:'This may be a prepayment, unapplied credit or incomplete exported invoice record.',recommendation:'Reconcile the full accounting ledger before requesting a refund.',evidence:[...evidence('invoices',lines),...evidence('payments',payments.filter(p=>p.invoice_id===id)),...evidence('adjustments',adjs)]});}
+  if(arCoverage&&balance>0&&due<asOf&&lines[0].status!=='paid'){add('PAST_DUE','past_due',{invoice_id:id,customer_id:lines[0].customer_id,title:'Past-due adjusted receivable',amountCents:balance,expectedCents:net,actualCents:paid,formula:`${fmtMoney(gross)} invoiced − ${fmtMoney(credit)} approved adjustments − ${fmtMoney(paid)} received`,summary:`Invoice ${id} was due ${due}; adjusted unpaid balance is ${fmtMoney(balance)}.`,recommendation:'Check for unapplied receipts, pending disputes and off-ledger adjustments before contacting the customer.',evidence:[...evidence('invoices',lines),...evidence('payments',payments.filter(p=>p.invoice_id===id)),...evidence('adjustments',adjs)]});}
+ }
+ // Duplicate charges signal: never declare fraud or add to customer-risk dollar totals.
+ for(const [k,lines] of invoiceGroups){
+  const byFingerprint=new Map();for(const x of lines){const fp=key(x.qty,x.p);byFingerprint.set(fp,[...(byFingerprint.get(fp)||[]),x]);}
+  for(const matches of byFingerprint.values())if(matches.length>1){
+   add('POSSIBLE_DUPLICATE','needs_evidence',{job_id:matches[0].job_id,customer_id:matches[0].customer_id,service_code:matches[0].service_code,invoice_id:[...new Set(matches.map(x=>x.invoice_id))].join(', '),line_id:matches[0].line_id,title:'Repeated identical invoice line details',summary:`${matches.length} lines share the same job, service, quantity and unit price. This can be legitimate split billing.`,recommendation:'Review source work references, invoice IDs and billing policy for duplicate charges.',evidence:evidence('invoices',matches)});
+  }
+ }
+ const order={potential_revenue:0,past_due:1,customer_risk:2,needs_evidence:3};findings.sort((a,b)=>order[a.bucket]-order[b.bucket]||(b.amountCents||0)-(a.amountCents||0)||a.id.localeCompare(b.id));
+ const sum=b=>findings.filter(f=>f.bucket===b).reduce((s,f)=>s+(f.amountCents||0),0);
+ const summary={potentialRevenueCents:sum('potential_revenue'),pastDueCents:arCoverage?sum('past_due'):null,arCoverage,paymentCoverage,adjustmentCoverage,customerRiskCents:sum('customer_risk'),cases:findings.length,unverifiedCount:findings.filter(f=>f.bucket==='needs_evidence').length,processedWork:work.length,processedInvoiceLines:invoices.length,processedPayments:payments.length,processedAdjustments:adjustments.length,excluded:skipped,asOf};
+ return {valid:true,errors:[],warnings,findings,summary,stats,assumptions:[
+  'Potential revenue, past-due accounts receivable and customer-side risk are separate categories, not a combined recoverable total.',
+  'Contract and work extracts are assumed complete only after a human verifies their source and scope.',
+  'Past-due A/R analysis requires supplied payments and credit/write-off datasets; missing optional files disable the analysis.',
+  'Credit/write-off adjustments reduce receivables, but may also explain rate discrepancies; reviewers must confirm.',
+  'No tax calculations, foreign currency, bundled prices, tiered pricing, deposits or automated dispute submissions.',
+  'This read-only audit does not make legal, financial or collection determinations.'
+ ]};
+}
+return {REQUIRED,FILES,OPTIONAL,audit,parseCSV,table,dateOK,fmtMoney,fmtQty,cents,qty};
+});
+
+</script>
+  <script>
+/* Fictional sample records. */
+window.LAB_DEMO = {"work":[{"work_id":"W001","job_id":"LAB-1001","customer_id":"C100","service_code":"ELISA","quantity":"40","completed_date":"2026-10-07","billable":"yes","notes":"Standard batch"},{"work_id":"W002","job_id":"LAB-1002","customer_id":"C100","service_code":"QPCR","quantity":"12","completed_date":"2026-10-08","billable":"yes","notes":"Confirmed run"},{"work_id":"W003","job_id":"LAB-1003","customer_id":"C200","service_code":"ELISA","quantity":"20","completed_date":"2026-10-09","billable":"yes","notes":"Contract rate applies"},{"work_id":"W004","job_id":"LAB-1004","customer_id":"C200","service_code":"PREP","quantity":"10","completed_date":"2026-10-10","billable":"yes","notes":"Approved sample preparation"},{"work_id":"W005","job_id":"LAB-1005","customer_id":"C300","service_code":"ICPMS","quantity":"5","completed_date":"2026-10-11","billable":"yes","notes":"Five completed tests"},{"work_id":"W006","job_id":"LAB-1006","customer_id":"C300","service_code":"RUSH","quantity":"3","completed_date":"2026-10-11","billable":"yes","notes":"Rush fees preapproved"},{"work_id":"W007","job_id":"LAB-1007","customer_id":"C400","service_code":"HPLC","quantity":"7","completed_date":"2026-10-12","billable":"yes","notes":"Completed delivery"},{"work_id":"W008","job_id":"LAB-1008","customer_id":"C500","service_code":"SEQ","quantity":"4","completed_date":"2026-10-12","billable":"yes","notes":"Rate schedule not supplied"},{"work_id":"W009","job_id":"LAB-1009","customer_id":"C600","service_code":"ELISA","quantity":"10","completed_date":"2026-10-15","billable":"yes","notes":"Fully reconciled"},{"work_id":"W010","job_id":"LAB-1010","customer_id":"C300","service_code":"ICPMS","quantity":"2","completed_date":"2026-11-05","billable":"yes","notes":"Not yet due"},{"work_id":"W011","job_id":"LAB-1011","customer_id":"C100","service_code":"ELISA","quantity":"2","completed_date":"2026-10-20","billable":"no","notes":"QC repeats excluded"},{"work_id":"W014","job_id":"LAB-1014","customer_id":"C400","service_code":"HPLC","quantity":"2","completed_date":"2026-10-21","billable":"yes","notes":"Completed service invoice voided"},{"work_id":"W015","job_id":"LAB-1015","customer_id":"C100","service_code":"ELISA","quantity":"2","completed_date":"2026-10-22","billable":"yes","notes":"Approved credit applies"},{"work_id":"W016","job_id":"LAB-1016","customer_id":"C300","service_code":"ICPMS","quantity":"1","completed_date":"2026-10-24","billable":"yes","notes":"Approved write-off applies"},{"work_id":"W017","job_id":"LAB-1017","customer_id":"C700","service_code":"SPEC","quantity":"3","completed_date":"2026-10-25","billable":"yes","notes":"Rate agreement incomplete"}],"rates":[{"customer_id":"C100","service_code":"ELISA","unit_rate":"85","effective_from":"2026-01-01","effective_to":"2026-12-31"},{"customer_id":"C100","service_code":"QPCR","unit_rate":"120","effective_from":"2026-01-01","effective_to":"2026-12-31"},{"customer_id":"C200","service_code":"ELISA","unit_rate":"95","effective_from":"2026-01-01","effective_to":"2026-12-31"},{"customer_id":"C200","service_code":"PREP","unit_rate":"45","effective_from":"2026-01-01","effective_to":"2026-12-31"},{"customer_id":"C300","service_code":"ICPMS","unit_rate":"210","effective_from":"2026-01-01","effective_to":"2026-12-31"},{"customer_id":"C300","service_code":"RUSH","unit_rate":"65","effective_from":"2026-01-01","effective_to":"2026-12-31"},{"customer_id":"C400","service_code":"HPLC","unit_rate":"130","effective_from":"2026-01-01","effective_to":"2026-12-31"},{"customer_id":"C600","service_code":"ELISA","unit_rate":"90","effective_from":"2026-01-01","effective_to":"2026-12-31"},{"customer_id":"C700","service_code":"SPEC","unit_rate":"180","effective_from":"2026-01-01","effective_to":"2026-12-31"},{"customer_id":"C700","service_code":"SPEC","unit_rate":"170","effective_from":"2026-09-01","effective_to":"2026-12-31"}],"invoices":[{"line_id":"L001","invoice_id":"INV-1001","job_id":"LAB-1001","customer_id":"C100","service_code":"ELISA","quantity":"40","unit_price":"85","invoice_date":"2026-10-08","due_date":"2026-11-07","status":"issued"},{"line_id":"L002","invoice_id":"INV-1002","job_id":"LAB-1002","customer_id":"C100","service_code":"QPCR","quantity":"8","unit_price":"120","invoice_date":"2026-10-09","due_date":"2026-11-08","status":"issued"},{"line_id":"L003","invoice_id":"INV-1003","job_id":"LAB-1003","customer_id":"C200","service_code":"ELISA","quantity":"20","unit_price":"85","invoice_date":"2026-10-10","due_date":"2026-11-09","status":"issued"},{"line_id":"L004","invoice_id":"INV-1005","job_id":"LAB-1005","customer_id":"C300","service_code":"ICPMS","quantity":"6","unit_price":"210","invoice_date":"2026-10-12","due_date":"2026-11-11","status":"issued"},{"line_id":"L005","invoice_id":"INV-1006","job_id":"LAB-1006","customer_id":"C300","service_code":"RUSH","quantity":"3","unit_price":"65","invoice_date":"2026-10-12","due_date":"2026-11-11","status":"issued"},{"line_id":"L006","invoice_id":"INV-1007","job_id":"LAB-1007","customer_id":"C400","service_code":"HPLC","quantity":"7","unit_price":"130","invoice_date":"2026-10-13","due_date":"2026-11-12","status":"issued"},{"line_id":"L007","invoice_id":"INV-1009","job_id":"LAB-1009","customer_id":"C600","service_code":"ELISA","quantity":"10","unit_price":"90","invoice_date":"2026-10-16","due_date":"2026-11-15","status":"issued"},{"line_id":"L008","invoice_id":"INV-1010","job_id":"LAB-1010","customer_id":"C300","service_code":"ICPMS","quantity":"2","unit_price":"210","invoice_date":"2026-11-06","due_date":"2026-12-06","status":"issued"},{"line_id":"L009","invoice_id":"INV-1014","job_id":"LAB-1014","customer_id":"C400","service_code":"HPLC","quantity":"2","unit_price":"130","invoice_date":"2026-10-22","due_date":"2026-11-21","status":"void"},{"line_id":"L010","invoice_id":"INV-1015","job_id":"LAB-1015","customer_id":"C100","service_code":"ELISA","quantity":"2","unit_price":"85","invoice_date":"2026-10-23","due_date":"2026-11-22","status":"issued"},{"line_id":"L011","invoice_id":"INV-1016","job_id":"LAB-1016","customer_id":"C300","service_code":"ICPMS","quantity":"1","unit_price":"210","invoice_date":"2026-10-25","due_date":"2026-11-18","status":"issued"}],"payments":[{"payment_id":"P001","invoice_id":"INV-1001","paid_amount":"3400","payment_date":"2026-11-05"},{"payment_id":"P002","invoice_id":"INV-1002","paid_amount":"960","payment_date":"2026-11-06"},{"payment_id":"P003","invoice_id":"INV-1003","paid_amount":"1700","payment_date":"2026-11-07"},{"payment_id":"P004","invoice_id":"INV-1005","paid_amount":"1260","payment_date":"2026-11-08"},{"payment_id":"P005","invoice_id":"INV-1006","paid_amount":"195","payment_date":"2026-11-09"},{"payment_id":"P006","invoice_id":"INV-1007","paid_amount":"300","payment_date":"2026-11-15"},{"payment_id":"P007","invoice_id":"INV-1009","paid_amount":"900","payment_date":"2026-11-12"},{"payment_id":"P008","invoice_id":"INV-1015","paid_amount":"140","payment_date":"2026-11-18"},{"payment_id":"P009","invoice_id":"INV-1016","paid_amount":"170","payment_date":"2026-11-19"}],"adjustments":[{"adjustment_id":"A001","invoice_id":"INV-1015","adjustment_type":"credit","amount":"30.00","adjustment_date":"2026-11-16","reason":"Approved courtesy credit"},{"adjustment_id":"A002","invoice_id":"INV-1016","adjustment_type":"writeoff","amount":"40.00","adjustment_date":"2026-11-17","reason":"Manager-approved write-off"}]};
+
+</script>
+  <script>
+/* LabRevenue Check UI v3 — self-contained browser application. */
+(function(){
+'use strict';
+const E=window.LabAudit;
+const $=id=>document.getElementById(id);
+const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const money=E.fmtMoney,asNum=c=>(c/100).toFixed(2);
+const sourceLabels={work:'Completed work',rates:'Contract rates',invoices:'Invoice lines',payments:'Payments',adjustments:'Credits & write-offs'};
+const sourceDesc={work:'Approved work completed by job and service',rates:'Customer-specific, dated price agreements',invoices:'Issued invoice line items and due dates',payments:'Receipts allocated to invoice IDs',adjustments:'Approved credits and write-offs (optional)'};
+const buckets={potential_revenue:{label:'Potential underbilling',short:'Underbilling',theme:'teal',color:'#11897e',icon:'↗'},past_due:{label:'Past-due receivables',short:'Past due',theme:'amber',color:'#d4a04a',icon:'◷'},customer_risk:{label:'Customer-side variance',short:'Customer risk',theme:'rose',color:'#ce7277',icon:'↔'},needs_evidence:{label:'Needs evidence',short:'Unverified',theme:'blue',color:'#759ac0',icon:'?'}};
+const statusNames=['Needs review','Investigating','Evidence confirmed','Ready for follow-up','Resolved','Dismissed'];
+let state={view:'overview',sourceMode:'demo',sources:{},raw:{},result:null,filters:{query:'',bucket:'all',status:'all'},reviews:{},activeCase:null,notice:true,dates:'2026-11-22',lastErrors:[],sort:'priority',auditSignature:''};
+let toastTimer=null;
+const APP_VERSION='4.0.0';
+function notify(message){const el=$('toast');el.textContent=message;el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),3700);}
+function initDemo(){state.auditSignature='';state.raw={};state.sources={};for(const kind of Object.keys(E.REQUIRED)){state.raw[kind]=E.table(window.LAB_DEMO[kind]||[],kind);state.sources[kind]={origin:'demo',name:E.FILES[kind],rows:state.raw[kind].rows.length};}state.sourceMode='demo';state.reviews={};state.lastErrors=[];runAudit(false);}
+function dataSignature(raw,date){
+  const source=JSON.stringify(raw)+date;let hash=2166136261;
+  for(let i=0;i<source.length;i++){hash^=source.charCodeAt(i);hash=Math.imul(hash,16777619);}
+  return (hash>>>0).toString(36);
+}
+function runAudit(show=true){
+ state.dates=$('audit-date').value;
+ const sig=dataSignature(state.raw,state.dates);
+ if(state.auditSignature&&state.auditSignature!==sig){state.reviews={};if(state.activeCase)closeDrawer();}
+ state.auditSignature=sig;
+ try{state.result=E.audit(state.raw,state.dates);state.lastErrors=state.result.valid?[]:state.result.errors;}catch(err){state.result={valid:false,errors:[err.message],findings:[],summary:null,warnings:[]};state.lastErrors=[err.message];}
+ renderAll();if(show)notify(state.result.valid?`Audit completed · ${state.result.findings.length} exceptions found`:'Audit blocked · review invalid or missing source data');
+}
+function reviewOf(f){return state.reviews[f.id]||{status:'Needs review',note:'',outcome:'',amount:'',reference:''};}
+function reviewOpen(f){return !['Resolved','Dismissed'].includes(reviewOf(f).status);}
+function badge(text,theme){return `<span class="badge badge-${theme}"><span class="badge-dot"></span>${esc(text)}</span>`;}
+function moneyOrDash(n){return n==null?'—':money(n);}
+function safeStatus(s){return badge(s,s==='Resolved'?'teal':s==='Dismissed'?'gray':s==='Ready for follow-up'?'blue':s==='Evidence confirmed'?'teal':'amber');}
+function findById(id){return state.result?.findings.find(f=>f.id===id);}
+function setView(v){if(!['overview','cases','sources','method'].includes(v))return;state.view=v;document.querySelectorAll('.nav-link').forEach(el=>el.classList.toggle('active',el.dataset.view===v));document.querySelectorAll('.view').forEach(el=>el.classList.toggle('active',el.id==='view-'+v));$('crumb-name').textContent={overview:'Overview',cases:'Case review',sources:'Data room',method:'How it works'}[v];renderAll();window.scrollTo({top:0,behavior:'instant'});}
+function renderAll(){
+ const r=state.result;
+ $('nav-cases').textContent=r?.valid?r.findings.filter(reviewOpen).length:'—';
+ $('side-date').textContent=`As of ${prettyDate(state.dates)}`;
+ $('audit-notice').hidden=!state.notice;
+ const banner=$('audit-notice');
+ banner.querySelector('b').textContent=state.sourceMode==='demo'?'Demonstration workspace':'Local audit workspace';
+ banner.querySelector('.notice > div > span').textContent=state.sourceMode==='demo'?'All records are fictional. Findings are potential discrepancies, not confirmed recoveries or amounts legally due.':'Your CSVs stay in this browser session. Findings are potential discrepancies that require contract, record and ledger verification.';
+ document.querySelector('.mode-tag').innerHTML=`<span class="mode-pulse"></span>${state.sourceMode==='demo'?'Synthetic demo data':'Local CSV workspace'}`;
+ if(state.view==='overview')renderOverview();
+ if(state.view==='cases')renderCases();
+ if(state.view==='sources')renderSources();
+ if(state.view==='method')renderMethod();
+ if(state.activeCase)renderDrawer();
+}
+const prettyDate=d=>{if(!E.dateOK(d))return d;return new Date(d+'T12:00:00Z').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric',timeZone:'UTC'});};
+function errorPanel(){return `<div class="error-panel"><b>Audit blocked — no financial findings generated</b><ul>${(state.lastErrors||[]).slice(0,16).map(x=>`<li>${esc(x)}</li>`).join('')}${state.lastErrors.length>16?`<li>... ${state.lastErrors.length-16} additional issues</li>`:''}</ul><div style="margin-top:11px"><button class="btn btn-outline btn-sm" data-action="sources">Review data files</button></div></div>`;}
+function warningPanel(){const warnings=state.result?.warnings||[];return warnings.length?`<div class="warning-panel"><b>Reconciliation caveats (${warnings.length})</b><ul>${warnings.slice(0,5).map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>`:'';}
+function kpiCard(name,value,caption,theme,icon){return `<div class="kpi-card"><div class="kpi-top"><span>${esc(name)}</span><div class="kpi-icon ${theme==='teal'?'':theme}">${icon}</div></div><div class="kpi-value">${esc(value)}</div><div class="kpi-caption">${esc(caption)}</div><span class="kpi-rule ${theme==='teal'?'':theme}"></span></div>`;}
+function getRealized(){let cashCents=0,creditCents=0,n=0;for(const f of state.result?.findings||[]){const r=reviewOf(f);if(r.status!=='Resolved'||!r.reference||!Number.isFinite(Number(r.amount)))continue;const v=Math.round(Number(r.amount)*100);if(r.outcome==='cash_collected'&&['potential_revenue','past_due'].includes(f.bucket)){cashCents+=v;n++;}if(r.outcome==='credit_applied'&&f.bucket==='customer_risk'){creditCents+=v;}}return {cashCents,creditCents,n};}
+function renderOverview(){
+ const r=state.result;
+ if(!r?.valid){$('top-content').innerHTML=errorPanel()+`<div class="panel"><div class="panel-content"><p>Fix the source errors or restore the sample dataset to rerun the reconciliation.</p><button class="btn btn-primary" style="margin-top:15px" data-action="restore">Restore fictional demo</button></div></div>`;return;}
+ const s=r.summary;const review=r.findings.filter(reviewOpen).length;const verified=getRealized();const total=s.potentialRevenueCents+(s.pastDueCents||0)+s.customerRiskCents;
+ const exposure=[['potential_revenue',s.potentialRevenueCents],['past_due',s.pastDueCents||0],['customer_risk',s.customerRiskCents]];
+ const progress=100*(r.findings.length-review)/Math.max(1,r.findings.length);
+ const high=r.findings.filter(x=>x.bucket==='potential_revenue').length;
+ $('top-content').innerHTML=warningPanel()+`
+ <div class="kpi-grid">
+  ${kpiCard('Potential underbilling',money(s.potentialRevenueCents),`${high} cases · requires verification`,'teal','↗')}
+  ${kpiCard('Past-due A/R',s.arCoverage?money(s.pastDueCents):'Not assessed',s.arCoverage?'Separate from potential underbilling':'Add payments and adjustment files','orange','◷')}
+  ${kpiCard('Customer-side variance',money(s.customerRiskCents),'Potential customer billing risk','rose','↔')}
+  ${kpiCard('Open review queue',String(review).padStart(2,'0'),`${r.findings.length-review} closed or dismissed`,'blue','▤')}
+ </div>
+ <div class="insight-layout">
+  <div class="panel"><div class="panel-head"><div><h2>Where to investigate</h2><p>Detected financial exceptions by category, not guaranteed revenue</p></div><button class="text-link" data-action="cases">View all cases ↗</button></div>
+   <div class="panel-content"><div class="detail-muted">Amounts by issue type · these categories must not be added together</div><div class="exposure-bar" aria-label="Distribution of detected financial exceptions">${exposure.map(([b,n])=>`<span title="${esc(buckets[b].label)}: ${money(n)}" style="width:${total?100*n/total:0}%;background:${buckets[b].color}"></span>`).join('')}</div><div class="exp-key">${exposure.map(([b,n])=>`<div class="exp-line"><span class="exp-dot" style="background:${buckets[b].color}"></span><span class="exp-name">${esc(buckets[b].label)}</span><strong>${b==='past_due'&&!s.arCoverage?'Not assessed':money(n)}</strong></div>`).join('')}<div class="exp-line"><span class="exp-dot" style="background:#91acc9"></span><span class="exp-name">Cases needing additional evidence</span><strong>${s.unverifiedCount} cases</strong></div></div></div>
+  </div>
+  <div class="panel"><div class="panel-head"><div><h2>Review progress</h2><p>Human decisions, not automated corrections</p></div></div><div class="panel-content"><div class="review-header"><span class="detail-muted">Closed or dismissed</span><b>${r.findings.length-review} <span style="font-size:13px;color:#91a3ab;font-weight:500">/ ${r.findings.length}</span></b></div><div class="mini-progress"><div style="width:${progress}%"></div></div><div class="review-stats"><span>${Math.round(progress)}% completed</span><span>${review} require attention</span></div>
+  <div class="action-list"><div class="action-item"><span class="action-bullet" style="background:#0f9b85"></span><div><b>Start with unbilled work</b><span>Review contractual entitlement and completed-work evidence</span></div></div><div class="action-item"><span class="action-bullet" style="background:#d8a14e"></span><div><b>Reconcile past-due items</b><span>Confirm credits and unallocated receipts</span></div></div><div class="action-item"><span class="action-bullet" style="background:#869db5"></span><div><b>Verify ${s.unverifiedCount} unclear cases</b><span>Never infer missing or overlapping rate agreements</span></div></div></div>
+  <div style="margin-top:22px;display:flex;align-items:center;justify-content:space-between"><span class="detail-muted">Documented collections · ${verified.n} outcome(s)</span><b style="font-size:12px;color:#177b72">${money(verified.cashCents)}</b></div>
+  </div></div>
+ </div>
+ <div class="section-head"><div><h2>Priority exceptions</h2><p>Open a case to inspect its calculation and source records</p></div><button class="text-link" data-action="cases">Open case workbench ↗</button></div>
+ <div class="panel">${caseTable(r.findings.slice(0,6),'overview')}</div>
+ <div class="footer-note">As of ${prettyDate(state.dates)} · Local ${state.sourceMode==='demo'?'fictional demonstration':'customer-provided'} data · Not a legal determination or a record of recovered funds. Audit results are limited by the completeness of supplied sources.</div>`;
+}
+function caseTable(rows,mode){
+ if(!rows.length)return `<div class="empty-state"><div class="empty-mark">✓</div><h3>No matching exceptions</h3><p>Try a different filter or verify your inputs.</p></div>`;
+ return `<div class="table-frame"><table class="data-table"><thead><tr><th>Exception / Job</th><th>Category</th><th>Customer</th><th style="text-align:right">Amount</th><th>Review status</th><th style="text-align:right">Action</th></tr></thead><tbody>${rows.map(f=>`<tr><td data-label="Exception"><button class="case-link" data-case="${esc(f.id)}">${esc(f.title)}</button><div class="case-sub">${esc(f.job_id||f.invoice_id||'Unlinked')} · ${esc(f.service_code||f.type)} · ${esc(f.id)}</div></td><td data-label="Category">${badge(buckets[f.bucket].short,buckets[f.bucket].theme)}</td><td data-label="Customer">${esc(f.customer_id||'—')}</td><td data-label="Amount" class="money-cell">${moneyOrDash(f.amountCents)}</td><td data-label="Status">${safeStatus(reviewOf(f).status)}</td><td data-label="Action" class="action-cell"><button class="case-open" data-case="${esc(f.id)}">Review ↗</button></td></tr>`).join('')}</tbody></table></div>${mode==='cases'?`<div class="result-line">Showing ${rows.length} matching exceptions · Select a row to inspect the evidence.</div>`:''}`;
+}
+function renderCases(){const r=state.result;if(!r?.valid){$('cases-content').innerHTML=errorPanel();return;}
+ const f=state.filters;
+ const filtered=r.findings.filter(x=>{
+  if(f.bucket!=='all'&&x.bucket!==f.bucket)return false;
+  if(f.status!=='all'&&reviewOf(x).status!==f.status)return false;
+  const q=f.query.toLowerCase().trim();if(!q)return true;
+  return [x.id,x.title,x.job_id,x.invoice_id,x.customer_id,x.service_code,x.summary].some(v=>String(v||'').toLowerCase().includes(q));
+ });
+ $('cases-content').innerHTML=`<div class="quality-strip"><div class="quality-item"><span class="quality-circle">${r.findings.length}</span><div><b>Detected exceptions</b><small>Human verification required</small></div></div><div class="quality-item"><span class="quality-circle" style="background:#fff3e3;color:#bc8228">${r.findings.filter(reviewOpen).length}</span><div><b>Open review items</b><small>Not yet closed or dismissed</small></div></div><div class="quality-item"><span class="quality-circle" style="background:#edf3fc;color:#6482a3">${r.summary.unverifiedCount}</span><div><b>Missing supporting evidence</b><small>Review contract or source completeness</small></div></div></div>
+ <div class="panel"><div class="filterbar"><div class="search-field"><span aria-hidden="true">⌕</span><input id="case-search" type="search" value="${esc(f.query)}" placeholder="Search job, invoice, customer or exception…" aria-label="Search exceptions"></div><div class="filtergroup"><select id="category-filter" class="select-field" aria-label="Filter by category"><option value="all">All categories</option>${Object.entries(buckets).map(([k,b])=>`<option value="${k}" ${f.bucket===k?'selected':''}>${esc(b.short)}</option>`).join('')}</select><select id="status-filter" class="select-field" aria-label="Filter by review status"><option value="all">All statuses</option>${statusNames.map(s=>`<option value="${s}" ${s===f.status?'selected':''}>${s}</option>`).join('')}</select></div></div><div id="filtered-case-table">${caseTable(filtered,'cases')}</div></div>`;
+}
+function renderSourceCard(kind){
+ const item=state.sources[kind],rows=state.raw[kind]?.rows?.length;
+ const status=item?`${rows} rows loaded`:'Not uploaded';
+ return `<div class="file-card" data-file-card="${kind}"><div class="file-head"><div class="file-icon">▤</div><div class="file-copy"><b>${sourceLabels[kind]}</b><p>${sourceDesc[kind]}</p></div>${item?badge('Loaded','teal'):badge(kind==='adjustments'?'Optional':'Required','amber')}</div><div class="file-foot"><div class="file-stat">${item?`<b>${esc(item.name)}</b> · ${rows} rows`:status}</div><div class="file-actions"><button class="btn btn-outline btn-sm" data-action="download-sample" data-kind="${kind}">Sample ↓</button><label class="btn btn-quiet btn-sm" for="upload-${kind}" tabindex="0">Replace ↑</label><input type="file" id="upload-${kind}" data-kind="${kind}" accept=".csv,text/csv" aria-label="Upload ${sourceLabels[kind]} CSV"/></div></div><div class="file-columns">Columns · <code>${E.REQUIRED[kind].join(' · ')}</code></div></div>`;
+}
+function renderSources(){
+ const loaded=Object.keys(state.sources).length,valid=state.result?.valid;
+ $('source-content').innerHTML=`${state.lastErrors.length?errorPanel():''}${warningPanel()}<div class="quality-strip"><div class="quality-item"><span class="quality-circle">${loaded}/5</span><div><b>Input datasets loaded</b><small>Three required, two optional</small></div></div><div class="quality-item"><span class="quality-circle" style="background:#eaf2f9;color:#567b9e">${state.sourceMode==='demo'?'DEMO':'LOCAL'}</span><div><b>${state.sourceMode==='demo'?'Fictional example':'Private local workspace'}</b><small>No backend or network requests</small></div></div><div class="quality-item"><span class="quality-circle" style="background:${valid?'#e5f8f0':'#fff2e8'};color:${valid?'#168575':'#af772d'}">${valid?'✓':'!'}</span><div><b>${valid?'Latest audit passed validation':'Audit not verified'}</b><small>${valid?'Ready for case review':'Check required columns and records'}</small></div></div></div><div class="section-head"><div><h2>Source files</h2><p>Changing one file starts a new, separate private dataset so fictional data cannot be mixed with customer records.</p></div></div><div class="file-grid">${Object.keys(E.REQUIRED).map(renderSourceCard).join('')}</div><div class="source-actions"><button class="btn btn-outline" data-action="download-all">Download all sample CSVs</button><button class="btn btn-primary" data-action="rerun">Run reconciliation ↗</button></div><div class="hint-box" style="margin-top:19px"><b>Data assurance rules.</b> Invalid dates, duplicate record IDs, negative amounts, malformed CSVs, missing columns and contradictory invoice headers block the entire audit. Future-dated records and void invoices are excluded explicitly. Past-due analysis runs only when both payment and adjustment exports are supplied. Credits and write-offs reduce overdue balances. An ambiguous or absent rate produces an evidence case, never a fabricated underbilling amount.</div>`;
+}
+function renderMethod(){
+ $('method-content').innerHTML=`<div class="method-grid">
+ <div class="method-card"><span class="step-index">01</span><h3>Import without replacing your systems</h3><p>Use exports from your laboratory operations, pricing, accounting and payment records. All processing in this demo stays in the current browser.</p></div>
+ <div class="method-card"><span class="step-index">02</span><h3>Validate before calculating</h3><p>Identify duplicate IDs, missing columns, invalid money or dates, out-of-period records, contradictory invoice data and incomplete rate coverage.</p></div>
+ <div class="method-card"><span class="step-index">03</span><h3>Explain every discrepancy</h3><p>Review billed quantities, contractual reference rates, credits, paid amounts, due dates and evidence references. Amounts are not treated as automatically collectible.</p></div>
+ <div class="method-card"><span class="step-index">04</span><h3>Review, resolve and document</h3><p>Use a human review queue, create a draft correction or follow-up, and log a confirmed cash or credit outcome with an external evidence reference.</p></div>
+ </div><div class="insight-layout"><div class="panel"><div class="panel-head"><div><h2>Supported in this prototype</h2><p>Conservative, deterministic rules</p></div></div><div class="scope-list"><div><span class="good">✓</span> Completed vs invoiced unit reconciliation</div><div><span class="good">✓</span> Customer-specific effective-dated contracted rates</div><div><span class="good">✓</span> Past-due payments with partial payments and adjustments</div><div><span class="good">✓</span> Invoice over-quantities and missing evidence</div><div><span class="good">✓</span> Duplicate identifiers and possible repeated invoice lines</div><div><span class="good">✓</span> Source row references, approval states and CSV exports</div></div></div>
+ <div class="panel"><div class="panel-head"><div><h2>Not supported yet</h2><p>Explicitly outside the POC scope</p></div></div><div class="scope-list"><div><span class="bad">×</span> PDF/Excel extraction or autonomous contract interpretation</div><div><span class="bad">×</span> Taxes, bundled service pricing and tiered discounts</div><div><span class="bad">×</span> Foreign currency, deposits or complex prepayments</div><div><span class="bad">×</span> Automatic invoice issuance or debt collection</div><div><span class="bad">×</span> Production security, user access and cloud persistence</div><div><span class="bad">×</span> AI-generated decisions presented as verified facts</div></div></div></div>
+ <div class="hint-box">For real business use, obtain permission to analyze records; validate actual rate terms and complete accounting exports; independently confirm each finding before issuing an adjustment. This is an offline demonstration, not a hosted production or compliant medical billing system.</div>`;
+}
+function sourceEvidenceDetails(e){
+ const kind=Object.keys(E.FILES).find(k=>E.FILES[k]===e.source);const row=state.raw[kind]?.rows?.find(r=>r.__row===e.row);
+ const fields=row?Object.entries(row).filter(([k])=>k!=='__row'):[];
+ return `<details class="evidence-details"><summary><span class="ev-icon">▤</span><strong>${esc(e.source)}</strong><span>Row ${esc(e.row)}</span><code>${esc(e.reference)}</code><span aria-hidden="true">⌄</span></summary><div class="evidence-details-body">${fields.length?fields.map(([k,v])=>`<div class="ev-field"><span>${esc(k)}</span><b>${esc(v)}</b></div>`).join(''):'<span>Original row not available.</span>'}</div></details>`;
+}
+
+function renderDrawer(){
+ const f=findById(state.activeCase);if(!f){closeDrawer();return;}
+ const r=reviewOf(f);const outcomes=[['','Select outcome'],...(f.bucket==='potential_revenue'||f.bucket==='past_due'?[['cash_collected','Cash received and reconciled']]:[]),...(f.bucket==='customer_risk'?[['credit_applied','Customer credit / refund issued']]:[]),['nonrecoverable','Closed with no financial recovery']];
+ $('overlay').hidden=false;$('case-drawer').hidden=false;document.body.style.overflow='hidden';
+ const bucket=buckets[f.bucket];
+ $('case-drawer').innerHTML=`<div class="drawer-header"><div><div class="drawer-kicker">${esc(f.id)} · ${esc(bucket.short.toUpperCase())}</div><h2>${esc(f.title)}</h2><p>${esc(f.job_id||'Invoice-level case')} · ${esc(f.customer_id||'Unlinked customer')} ${f.invoice_id?'· '+esc(f.invoice_id):''}</p></div><button id="drawer-close" class="drawer-close" aria-label="Close case details">×</button></div>
+ <div class="drawer-body">
+  <div class="drawer-amount"><small>${esc(bucket.label)} · estimated exposure</small><strong>${moneyOrDash(f.amountCents)}</strong><p>${f.amountCents==null?'Insufficient verified contract data to quantify.':'Potential financial discrepancy. Not a confirmed receivable, refund or recovery.'}</p></div>
+  <div class="drawer-section"><h3>What the audit found</h3><p>${esc(f.summary||'')}</p></div>
+  ${f.formula?`<div class="drawer-section"><h3>Reconciliation calculation</h3><div class="formula">${esc(f.formula)}</div></div>`:''}
+  <div class="drawer-section"><h3>Supporting source records <span class="detail-muted" style="font-weight:400">(${(f.evidence||[]).length})</span></h3><div class="evidence-box">${(f.evidence||[]).length?(f.evidence||[]).map(sourceEvidenceDetails).join(''):'<div class="evidence-row">No source record supplied</div>'}</div></div>
+  <div class="drawer-section"><h3>Recommended next step</h3><p>${esc(f.recommendation||'Confirm the complete financial records with the appropriate reviewer.')}</p></div>
+  <div class="drawer-section"><h3>Review & remediation</h3><div class="drawer-form"><label class="form-label">Case status<select id="review-status">${statusNames.map(s=>`<option ${r.status===s?'selected':''}>${s}</option>`).join('')}</select></label>
+  <label class="form-label">Reviewer notes<textarea id="review-note" placeholder="What did you verify? Why was this marked resolved or dismissed?">${esc(r.note)}</textarea></label>
+  <div id="resolution-fields" ${r.status!=='Resolved'?'hidden':''}><div class="drawer-form" style="border-left:3px solid #a3d8d0;padding-left:13px"><label class="form-label">Resolution outcome<select id="resolution-outcome">${outcomes.map(([v,l])=>`<option value="${v}" ${r.outcome===v?'selected':''}>${l}</option>`).join('')}</select></label><label class="form-label">Verified financial outcome (USD)<input id="resolution-amount" inputmode="decimal" placeholder="0.00" value="${esc(r.amount)}" /></label><label class="form-label">Proof / ledger reference<input id="resolution-reference" placeholder="Receipt ID, credit memo or invoice reference" value="${esc(r.reference)}"/></label></div></div></div>
+  <div class="drawer-buttons"><button class="btn btn-primary" id="save-review">Save case review</button><button class="btn btn-outline" id="copy-draft">Preview follow-up</button><button class="btn btn-quiet" id="export-one">Export case</button></div><div id="draft-preview" hidden class="draft-preview"><label class="form-label">Review this draft before sending<textarea id="draft-text" rows="9" readonly></textarea></label><div style="display:flex;justify-content:flex-end;margin-top:8px"><button id="draft-copy" class="btn btn-outline btn-sm">Copy draft</button></div></div><div class="footer-note">No correction is sent automatically. Review entries live only in this browser session unless exported.</div>
+  </div>
+ </div>`;
+ $('drawer-close').onclick=closeDrawer;
+ $('review-status').onchange=()=>{$('resolution-fields').hidden=$('review-status').value!=='Resolved';};
+ $('save-review').onclick=saveReview;
+ $('copy-draft').onclick=()=>{const el=$('draft-preview');el.hidden=false;$('draft-text').value=followup(f);el.scrollIntoView({behavior:'smooth',block:'nearest'});};
+ $('draft-copy').onclick=()=>copyDraft(f);
+ $('export-one').onclick=()=>downloadCSV('case-'+f.id+'.csv',[caseExportRow(f)],caseHeaders);
+}
+function openDrawer(id){if(!findById(id))return;state.activeCase=id;renderDrawer();setTimeout(()=>$('drawer-close')?.focus(),30);}
+function closeDrawer(){state.activeCase=null;$('overlay').hidden=true;$('case-drawer').hidden=true;document.body.style.overflow='';}
+function saveReview(){
+ const f=findById(state.activeCase);if(!f)return;
+ const status=$('review-status').value,note=$('review-note').value.trim();let outcome='',reference='',amountValue='';
+ if(status==='Resolved'){
+  outcome=$('resolution-outcome').value;reference=$('resolution-reference').value.trim();amountValue=$('resolution-amount').value.trim();
+  if(!outcome){notify('Select a resolution outcome.');return;}
+  if(!reference){notify('A supporting ledger, receipt, or adjustment reference is required.');return;}
+  if(outcome==='cash_collected'&&!['potential_revenue','past_due'].includes(f.bucket)){notify('Cash recovery applies only to underbilling or past-due cases.');return;}
+  if(outcome==='credit_applied'&&f.bucket!=='customer_risk'){notify('Customer credits belong to customer-side cases, not recovered revenue.');return;}
+  if(!/^\d+(?:\.\d{1,2})?$/.test(amountValue)){notify('Enter a valid confirmed outcome amount, including 0.00 if applicable.');return;}
+  const amountCents=E.cents(amountValue);if(amountCents==null||amountCents>(f.amountCents||0)){notify('Confirmed outcome cannot exceed the detected case amount.');return;}
+  if(outcome==='nonrecoverable'&&amountCents!==0){notify('Nonrecoverable cases must have a confirmed amount of 0.00.');return;}
+  if(outcome!=='nonrecoverable'&&amountCents===0){notify('A realized cash or credit outcome must be greater than zero.');return;}
+ }
+ if(['Evidence confirmed','Ready for follow-up'].includes(status)&&!note){notify('Document the evidence reviewed before advancing this case.');return;}
+ if(status==='Dismissed'&&!note){notify('Provide a reason for dismissing the finding.');return;}
+ state.reviews[f.id]={status,note,outcome,reference,amount:amountValue,reviewedAt:new Date().toISOString()};
+ closeDrawer();renderAll();notify(`Saved case ${f.id} as ${status.toLowerCase()}`);
+}
+function followup(f){
+ const inv=f.invoice_id||'(invoice reference to verify)';let content='';
+ if(f.bucket==='potential_revenue')content=`Subject: Billing reconciliation review — ${f.job_id||inv}\n\nHello,\n\nDuring an internal review, we identified a potential discrepancy involving ${f.job_id||inv} (${f.service_code||'service'}). Our records suggest ${moneyOrDash(f.amountCents)} may require additional billing review.\n\nWe are validating the relevant agreement, work records and any prior adjustments. Please advise whether there are other invoices, credits or commercial arrangements we should consider.\n\nNo correction will be requested until the records have been confirmed.\n\nThank you.`;
+ else if(f.bucket==='past_due')content=`Subject: Request to reconcile invoice ${inv}\n\nHello,\n\nOur records show a potential outstanding adjusted balance of ${moneyOrDash(f.amountCents)} for invoice ${inv}. Before taking further action, could you confirm whether any recent payments, disputes or credits are pending or have been applied elsewhere?\n\nThank you.`;
+ else content=`Subject: Supporting records requested — ${f.job_id||inv}\n\nHello,\n\nWe are reviewing an apparent discrepancy in ${f.job_id||inv}. Before making any correction, please confirm the applicable agreement, completed work details, and any relevant invoices or adjustments.\n\nThank you.`;
+ return content;
+}
+async function copyDraft(f){
+ const draft=$('draft-text');const text=draft?.value||followup(f);
+ try{await navigator.clipboard.writeText(text);notify('Draft copied. Review it before sending.');}
+ catch(e){if(draft){draft.focus();draft.select();notify('Select the highlighted text and use Ctrl+C (or Cmd+C).');}else notify('Copy unavailable. Use the case export.');}
+}
+
+function csvEscape(input){let s=String(input??'');if(/^[\s]*[=+\-@]/.test(s))s="'"+s;return '"'+s.replace(/"/g,'""')+'"';}
+function downloadCSV(name,rows,headers){const line=arr=>arr.map(csvEscape).join(',');const text='\uFEFF'+line(headers)+'\r\n'+rows.map(row=>line(headers.map(h=>row[h]??''))).join('\r\n')+'\r\n';const blob=new Blob([text],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+const caseHeaders=['case_id','type','category','job_id','invoice_id','customer_id','service_code','estimated_amount_usd','status','note','resolution_outcome','confirmed_amount_usd','proof_reference','formula','evidence_rows'];
+function caseExportRow(f){const r=reviewOf(f);return {case_id:f.id,type:f.type,category:buckets[f.bucket].label,job_id:f.job_id||'',invoice_id:f.invoice_id||'',customer_id:f.customer_id||'',service_code:f.service_code||'',estimated_amount_usd:f.amountCents==null?'':asNum(f.amountCents),status:r.status,note:r.note,resolution_outcome:r.outcome,confirmed_amount_usd:r.amount,proof_reference:r.reference,formula:f.formula,evidence_rows:(f.evidence||[]).map(x=>`${x.source}:${x.row}`).join('; ')};}
+function exportCases(){if(!state.result?.valid){notify('Run a valid audit first.');return;}downloadCSV('labrevenue-exceptions-'+state.dates+'.csv',state.result.findings.map(caseExportRow),caseHeaders);notify('Audit register exported.');}
+function saveReviews(){
+ if(!state.result?.valid){notify('Run a valid audit first.');return;}
+ const payload={app:'LabRevenue',version:APP_VERSION,asOf:state.dates,auditSignature:state.auditSignature,exportedAt:new Date().toISOString(),reviews:state.reviews};
+ const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='labrevenue-review-session-'+state.dates+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);notify('Review session downloaded. It contains your notes and customer references.');
+}
+async function loadReviews(file){
+ if(!file||!state.result?.valid){notify('Run a valid audit before restoring reviews.');return;}
+ if(file.size>2*1024*1024){notify('Review session exceeds 2 MB limit.');return;}
+ try{
+  const data=JSON.parse(await file.text());
+  if(data.app!=='LabRevenue'||data.auditSignature!==state.auditSignature||data.asOf!==state.dates||!data.reviews||typeof data.reviews!=='object'||Array.isArray(data.reviews))throw Error('Review session does not match the current source files and audit date.');
+  const findings=new Map(state.result.findings.map(f=>[f.id,f]));const restored={};
+  for(const [id,r] of Object.entries(data.reviews)){
+   const f=findings.get(id);
+   if(!f||!r||!statusNames.includes(r.status)||typeof r.note!=='string'||r.note.length>20000)throw Error('Review session contains an unknown case or invalid review.');
+   if(r.status==='Resolved'){
+    const amt=E.cents(r.amount);const allowed=r.outcome==='nonrecoverable'||(r.outcome==='cash_collected'&&['potential_revenue','past_due'].includes(f.bucket))||(r.outcome==='credit_applied'&&f.bucket==='customer_risk');
+    if(!allowed||amt===null||amt>(f.amountCents||0)||!r.reference||typeof r.reference!=='string'||(r.outcome==='nonrecoverable'?amt!==0:amt===0))throw Error('Review session has an invalid documented resolution.');
+   }
+   restored[id]={status:r.status,note:r.note,outcome:r.outcome||'',amount:r.amount||'',reference:r.reference||'',reviewedAt:r.reviewedAt||''};
+  }
+  state.reviews=restored;renderAll();notify(`Restored ${Object.keys(restored).length} reviews for this exact audit.`);
+ }catch(err){notify('Could not load session: '+err.message);}
+}
+
+function downloadSample(kind){const rows=window.LAB_DEMO[kind]||[];downloadCSV(E.FILES[kind],rows,E.REQUIRED[kind]);}
+function downloadAllSamples(){const kinds=Object.keys(E.REQUIRED);kinds.forEach((kind,i)=>setTimeout(()=>downloadSample(kind),i*300));notify('Downloading five fictional CSV examples.');}
+async function handleUpload(kind,file){if(!file)return;const name=file.name||'uploaded.csv';if(!name.toLowerCase().endsWith('.csv')){notify('This POC supports CSV files only.');return;}if(file.size>5*1024*1024){notify('File exceeds the 5 MB offline-demo limit.');return;}
+ try{
+  const parsed=E.parseCSV(await file.text());
+  if(state.sourceMode==='demo'){state.sourceMode='custom';state.sources={};state.raw={};state.reviews={};state.filters={query:'',bucket:'all',status:'all'};}
+  state.raw[kind]=parsed;state.reviews={};state.auditSignature='';state.sources[kind]={origin:'local',name,rows:parsed.rows.length};state.result=null;state.lastErrors=[];renderAll();notify(`${sourceLabels[kind]} loaded · ${parsed.rows.length} rows. Run reconciliation after all required files are loaded.`);
+ }catch(err){notify(`Could not parse ${name}: ${err.message}`);}
+}
+function bindEvents(){
+ $('primary-nav').addEventListener('click',e=>{const b=e.target.closest('[data-view]');if(b)setView(b.dataset.view);});
+ $('help-button').onclick=()=>setView('method');
+ $('rerun-button').onclick=()=>runAudit();$('run-data-audit').onclick=()=>runAudit();
+ $('reset-samples').onclick=()=>{initDemo();setView('sources');notify('Fictional demo restored.');};
+ $('audit-date').onchange=()=>{state.dates=$('audit-date').value;};
+ $('dismiss-notice').onclick=()=>{state.notice=false;renderAll();};
+ $('overlay').onclick=closeDrawer;
+ window.addEventListener('keydown',e=>{if(e.key==='Escape'&&state.activeCase)closeDrawer();});
+ document.querySelector('.page-body').addEventListener('click',e=>{
+  const caseButton=e.target.closest('[data-case]');if(caseButton){openDrawer(caseButton.dataset.case);return;}
+  const actionButton=e.target.closest('[data-action]');if(!actionButton)return;
+  const action=actionButton.dataset.action;
+  if(action==='cases'||action==='sources')setView(action);
+  else if(action==='restore'){initDemo();notify('Fictional demo restored.');}
+  else if(action==='rerun')runAudit();
+  else if(action==='export-cases')exportCases();
+  else if(action==='save-reviews')saveReviews();
+  else if(action==='load-reviews')document.getElementById('session-upload')?.click();
+  else if(action==='download-sample')downloadSample(actionButton.dataset.kind);
+  else if(action==='download-all')downloadAllSamples();
+ });
+ document.querySelector('.page-body').addEventListener('change',e=>{
+  if(e.target.matches('input[type=file][data-kind]')){handleUpload(e.target.dataset.kind,e.target.files?.[0]);e.target.value='';}
+  if(e.target.id==='session-upload'){loadReviews(e.target.files?.[0]);e.target.value='';}
+  if(e.target.id==='category-filter'){state.filters.bucket=e.target.value;renderCases();}
+  if(e.target.id==='status-filter'){state.filters.status=e.target.value;renderCases();}
+ });
+ document.querySelector('.page-body').addEventListener('input',e=>{
+  if(e.target.id==='case-search'){
+   state.filters.query=e.target.value;const start=e.target.selectionStart,end=e.target.selectionEnd;
+   // Update only table to avoid stealing input focus.
+   const f=state.filters,rows=state.result?.findings.filter(x=>(f.bucket==='all'||x.bucket===f.bucket)&&(f.status==='all'||reviewOf(x).status===f.status)&&[x.id,x.title,x.job_id,x.invoice_id,x.customer_id,x.service_code,x.summary].some(v=>String(v||'').toLowerCase().includes(f.query.trim().toLowerCase())))||[];
+   const el=$('filtered-case-table');if(el)el.innerHTML=caseTable(rows,'cases');
+  }
+ });
+ document.querySelector('.page-body').addEventListener('dragover',e=>{const c=e.target.closest('[data-file-card]');if(c){e.preventDefault();c.classList.add('drag-over');}});
+ document.querySelector('.page-body').addEventListener('dragleave',e=>{const c=e.target.closest('[data-file-card]');if(c)c.classList.remove('drag-over');});
+ document.querySelector('.page-body').addEventListener('drop',e=>{const c=e.target.closest('[data-file-card]');if(!c)return;e.preventDefault();c.classList.remove('drag-over');handleUpload(c.dataset.fileCard,e.dataTransfer?.files?.[0]);});
+ document.querySelector('.page-body').addEventListener('keydown',e=>{const label=e.target.closest('label[for^="upload-"]');if(label&&(e.key==='Enter'||e.key===' ')){e.preventDefault();const id=label.htmlFor;document.getElementById(id)?.click();}});
+}
+window.addEventListener('DOMContentLoaded',()=>{bindEvents();initDemo();setView('overview');});
+})();
+
+</script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Main navigation">
+      <div class="brand"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32" width="26" height="26"><path d="M5 24V9h6v15M13 24V5h6v19M21 24v-9h6v9" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>lab<span class="brand-bold">revenue</span><small>Revenue assurance</small></span></div>
+      <div class="workspace-chip"><span class="workspace-avatar">N</span><span class="workspace-copy"><b>Northstar Labs</b><small>Fictional demo workspace</small></span><span class="workspace-dots">···</span></div>
+      <div class="side-label">WORKSPACE</div>
+      <nav class="nav-list" id="primary-nav">
+        <button class="nav-link active" data-view="overview"><span class="nav-icon">▦</span> Overview <span class="nav-short">G</span></button>
+        <button class="nav-link" data-view="cases"><span class="nav-icon">▤</span> Case review <span class="nav-count" id="nav-cases">0</span></button>
+        <button class="nav-link" data-view="sources"><span class="nav-icon">▧</span> Data room <span class="nav-short">5 files</span></button>
+        <button class="nav-link" data-view="method"><span class="nav-icon">◎</span> How it works</button>
+      </nav>
+      <div class="side-label side-label-bottom">CURRENT AUDIT</div>
+      <div class="side-audit"><div class="status-dot"></div><div><b>Historical audit snapshot</b><small id="side-date">As of Nov 22, 2026</small></div></div>
+      <div class="sidebar-spacer"></div>
+      <div class="sidebar-foot"><span class="offline-dot"></span> Runs entirely in your browser <div class="sidebar-foot-muted">No account · No server uploads</div></div>
+    </aside>
+
+    <main class="workspace" id="workspace">
+      <header class="topbar">
+        <div class="breadcrumb"><span>Workspace</span><span class="breadcrumb-sep">/</span><strong id="crumb-name">Overview</strong></div>
+        <div class="topbar-actions"><span class="mode-tag"><span class="mode-pulse"></span> Fictional demo</span><button class="icon-button" id="help-button" title="How it works" aria-label="Open how it works">?</button><span class="user-avatar" aria-label="Demo reviewer">DR</span></div>
+      </header>
+      <div class="page-body">
+        <section id="view-overview" class="view active" aria-label="Overview">
+          <div class="heading-row"><div><div class="eyebrow"><span class="eyebrow-icon">◆</span> REVENUE INTELLIGENCE</div><h1>Find billing gaps. Verify every dollar.</h1><p class="page-subtitle">Independently reconcile completed work against contracted rates, invoices, payments and credits.</p></div><div class="heading-actions"><label class="date-control"><span>Audit as of</span><input id="audit-date" type="date" value="2026-11-22" aria-label="Audit as of date" /></label><button class="btn btn-primary" id="rerun-button"><span aria-hidden="true">↻</span> Run audit</button></div></div>
+          <div class="notice" id="audit-notice"><span class="notice-icon">i</span><div><b>Demonstration workspace</b><span>All records are fictional. Findings are potential discrepancies, not confirmed recoveries or amounts legally due.</span></div><button class="notice-close" aria-label="Dismiss notice" id="dismiss-notice">×</button></div>
+          <div id="top-content"></div>
+        </section>
+        <section id="view-cases" class="view" aria-label="Case review">
+          <div class="heading-row"><div><div class="eyebrow">RECONCILIATION WORKBENCH</div><h1>Exception register</h1><p class="page-subtitle">Every exception is traceable. Nothing is sent or changed without your approval.</p></div><div class="heading-actions"><button class="btn btn-outline" data-action="save-reviews">Save reviews</button><button class="btn btn-outline" data-action="load-reviews">Restore reviews</button><button class="btn btn-primary" data-action="export-cases"><span>↓</span> Export cases</button><input type="file" id="session-upload" accept="application/json,.json" hidden aria-label="Restore saved review session"></div></div>
+          <div id="cases-content"></div>
+        </section>
+        <section id="view-sources" class="view" aria-label="Data room">
+          <div class="heading-row"><div><div class="eyebrow">DATA WORKSPACE</div><h1>Connect the evidence.</h1><p class="page-subtitle">Load the five source exports used for the reconciliation. CSV only in this offline POC.</p></div><div class="heading-actions"><button class="btn btn-outline" id="reset-samples">Restore demo</button><button class="btn btn-primary" id="run-data-audit">Run reconciliation</button></div></div>
+          <div id="source-content"></div>
+        </section>
+        <section id="view-method" class="view" aria-label="Methodology">
+          <div class="heading-row"><div><div class="eyebrow">METHODOLOGY</div><h1>Built for defensible decisions.</h1><p class="page-subtitle">Deterministic reconciliation, transparent calculations, human-approved remediation.</p></div></div>
+          <div id="method-content"></div>
+        </section>
+      </div>
+    </main>
+  </div>
+  <div id="overlay" class="overlay" hidden></div>
+  <aside id="case-drawer" class="case-drawer" role="dialog" aria-modal="true" aria-label="Case details" hidden></aside>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <noscript><div style="padding:3rem">This offline demo requires JavaScript. Enable it and reopen the page.</div></noscript>
+</body>
+</html>
