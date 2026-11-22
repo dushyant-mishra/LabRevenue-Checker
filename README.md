@@ -1,28 +1,45 @@
 # LabRevenue Check
 
-**An invoice-review prototype that explains what was checked, what needs attention, and what information is still missing—in plain English.**
+### You did the work. Did you bill for all of it?
 
-![The updated invoice-review screen](public-pilot/screenshots/plain-summary.webp)
+**LabRevenue Check helps testing laboratories find revenue that may have slipped between completed jobs, customer price agreements, invoices, and payments.**
 
-## Open the working pilot
+A missed rush fee, an unbilled test, or a payment that doesn't match an invoice can be hard to spot when records live in different systems. LabRevenue Check brings those records together and shows your team **what needs attention, why, and what to check next**.
 
-[**LabRevenue public-invoice pilot**](public-pilot/index.html) — download the HTML to run it locally, with no installation or server. The standalone app includes the real public-invoice review and a **separate made-up billing-error practice example**.
+![LabRevenue Check invoice-review screen](public-pilot/screenshots/plain-summary.webp)
 
-### Actual review results
+## What your team can do
 
-| Question | Answer |
-|---|---|
-| How many real invoices were reviewed? | **7**, with 50 line items |
-| How much was billed? | **$7,742.41** in the historical documents |
-| Did their totals add up? | **7/7 yes** |
-| Were any billing errors proven? | **No** |
-| What still needs a closer look? | One historical pricing clarification and three repeated pickup-fee descriptions |
-| Has any money been recovered? | **Not established** |
+- **Catch missed billing.** Compare completed laboratory work with issued invoices.
+- **Check charges against agreed prices.** Spot possible rate or quantity differences for review.
+- **Follow up on unpaid amounts.** Separate billed balances from money actually received.
+- **See the supporting records.** Understand each question without decoding a technical report.
+- **Keep a clear review list.** Record a decision and export the findings for your billing team.
 
-![Questions to check](public-pilot/screenshots/plain-questions.webp)
+Every flagged item is a **question to verify**, not an automatic claim that someone has been billed incorrectly. Your team stays in control of corrections and follow-ups.
 
-The practice example demonstrates fictional possible missed charges, unpaid balances and possible customer overbilling. **Its amounts do not belong to Pace Analytical or Microbac Laboratories.**
+## Try the product
 
-[Source files and run instructions](public-pilot/README.md) · [Human-readable sample report](public-pilot/reports/Invoice_Review_Summary.html) · [Pilot progress and public-document provenance](research/)
+**[Download the interactive demo](public-pilot/index.html)** — on the GitHub file page, select **Download raw**, then open the saved HTML file in your browser. No account or installation is needed, and the demo does not upload your files.
 
-The illustrations in [`public-pilot/assets/`](public-pilot/assets/) are intended for promotional material, not as substitutes for real financial evidence. This is an offline, read-only proof of concept—not a live billing or recovery service.
+The demo has two clearly labeled examples:
+
+**1. Real public invoices.** Review seven historical laboratory invoices totaling **$7,742.41**. Their published line items add up correctly. See where additional contract or payment records would be needed before drawing further conclusions.
+
+**2. Practice billing review.** Explore deliberately fictional cases involving possible missed charges, unpaid balances, and charges that need customer-side confirmation.
+
+![Questions a billing manager can review](public-pilot/screenshots/plain-questions.webp)
+
+## Designed for independent laboratories
+
+LabRevenue Check is being developed for commercial testing laboratories that manage customer-specific prices and may use a mix of laboratory software, spreadsheets, and accounting tools. The goal is to **check the gaps between those systems**, not replace them.
+
+### Interested in a pilot?
+
+We are looking to work with testing laboratories willing to evaluate billing completeness using **authorized, appropriately de-identified records**. [Start a pilot inquiry](https://github.com/dushyant-mishra/LabRevenue-Checker/issues/new?title=LabRevenue%20Check%20pilot%20inquiry). GitHub issues are public: **do not attach invoices, contracts, or confidential data there**.
+
+---
+
+*Current status: Working proof of concept, not a production billing service. The public-invoice review has not established any billing error or recovered funds. The practice cases are fictional.*
+
+[How the demo works and where the data came from](public-pilot/README.md) · [Sample review report](public-pilot/reports/Invoice_Review_Summary.html) · [Project source code](public-pilot/src/)
