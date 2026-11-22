@@ -1,10 +1,13 @@
 from pathlib import Path
 root=Path(__file__).resolve().parents[1]
-html=(root/'index.html').read_text()
-assert '<!DOCTYPE html>' in html
-for source in ('engine.js','app.js','demo-data.js'):
-    content=(root/source).read_text().replace('</script','<\\/script')
-    assert content in html, f'Standalone HTML missing current {source}'
-assert (root/'styles.css').read_text() in html
-assert 'src="app.js"' not in html
-print('PASS standalone bundle matches source files')
+pilot=root/'public-pilot'
+html=(pilot/'index.html').read_text(encoding='utf-8')
+assert '<!doctype html>' in html.lower()
+for f in ['pilot-data.js','engine.js','sandbox-data.js','app.js']:
+    js=(pilot/'src'/f).read_text(encoding='utf-8').replace('</script','<\\/script')
+    assert js in html, f'{f} not embedded in standalone demo'
+assert (pilot/'src'/'styles.css').read_text(encoding='utf-8') in html
+assert (root/'index.html').read_text(encoding='utf-8')==html
+assert 'What to check next' in html
+assert 'Clarity for every' not in html
+print('PASS: bundled app matches source and root demo')
